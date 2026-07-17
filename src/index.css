@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-  /* Colors */
-  --bg-primary: #FAFBFD;
+  /* Colors - Matched to company logo & live branding */
+  --bg-primary: #FAF9FB;
   --bg-surface: #FFFFFF;
-  --bg-surface-hover: #F8FAFC;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
+  --bg-surface-hover: #F6F4FA;
+  --text-primary: #1C1527;
+  --text-secondary: #4A3E5D;
+  --text-muted: #7E7092;
   
-  --color-primary: #0B4F9F;
-  --color-primary-hover: #083C7A;
-  --color-accent: #14B8A6;
-  --color-accent-bg: rgba(20, 184, 166, 0.08);
-  --color-accent-hover: #0D9488;
-  --color-glow: #6EE7F9;
-  --color-dark-section: #08111F;
+  --color-primary: #5A3791; /* Company Purple */
+  --color-primary-hover: #452771;
+  --color-accent: #958E52; /* Company Gold/Olive */
+  --color-accent-bg: rgba(149, 142, 82, 0.08);
+  --color-accent-hover: #7E7845;
+  --color-glow: #00A8A9; /* Company Testimonial Teal */
+  --color-dark-section: #0F0B1E; /* Deep brand purple-navy */
   --color-success: #22C55E;
-  --color-border: #E2E8F0;
+  --color-border: #E8E5EE;
   
   /* Fonts */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -25,10 +25,10 @@
   --font-mono: 'Space Grotesk', monospace;
   
   /* Shadows & Depth */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(11, 79, 159, 0.05), 0 2px 4px -2px rgba(11, 79, 159, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(11, 79, 159, 0.07), 0 4px 6px -4px rgba(11, 79, 159, 0.05);
-  --shadow-glow: 0 0 20px rgba(110, 231, 249, 0.25);
+  --shadow-sm: 0 1px 2px 0 rgba(90, 55, 145, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(90, 55, 145, 0.06), 0 2px 4px -2px rgba(90, 55, 145, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(90, 55, 145, 0.08), 0 4px 6px -4px rgba(90, 55, 145, 0.05);
+  --shadow-glow: 0 0 20px rgba(0, 168, 169, 0.25);
   
   /* Radii */
   --radius-sm: 8px;
@@ -42,27 +42,27 @@
 }
 
 :root.dark {
-  --bg-primary: #050B14;
-  --bg-surface: #0D1527;
-  --bg-surface-hover: #14223C;
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
+  --bg-primary: #0A0714;
+  --bg-surface: #140E24;
+  --bg-surface-hover: #1E1536;
+  --text-primary: #F3F0F8;
+  --text-secondary: #AAA1BA;
+  --text-muted: #7E7490;
   
-  --color-primary: #3B82F6;
-  --color-primary-hover: #60A5FA;
-  --color-accent: #2DD4BF;
-  --color-accent-bg: rgba(45, 212, 191, 0.1);
-  --color-accent-hover: #14B8A6;
-  --color-glow: #22D3EE;
-  --color-dark-section: #03070E;
+  --color-primary: #8E5AD4;
+  --color-primary-hover: #A57CE2;
+  --color-accent: #C3BB84;
+  --color-accent-bg: rgba(195, 187, 132, 0.1);
+  --color-accent-hover: #B2A86A;
+  --color-glow: #00D2D3;
+  --color-dark-section: #05030B;
   --color-success: #4ADE80;
-  --color-border: #1E293B;
+  --color-border: #251B3E;
   
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 25px rgba(34, 211, 238, 0.15);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(0, 210, 211, 0.15);
 }
 
 /* Global Reset & Base */
@@ -86,6 +86,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: background-color var(--transition-normal), color var(--transition-normal);
+  position: relative;
+}
+
+/* Textured Background underlay using generated blurred clinic lobby */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url('/clinic_bg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+:root.dark body::before {
+  opacity: 0.03;
 }
 
 /* Layout Container */
@@ -132,7 +154,7 @@ p {
 }
 
 .dark .text-gradient {
-  background: linear-gradient(135deg, #60A5FA 0%, #2DD4BF 100%);
+  background: linear-gradient(135deg, #A57CE2 0%, #C3BB84 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -163,7 +185,7 @@ p {
 .btn-primary:hover {
   background-color: var(--color-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(11, 79, 159, 0.2);
+  box-shadow: 0 4px 12px rgba(90, 55, 145, 0.25);
 }
 
 .btn-secondary {
@@ -174,7 +196,7 @@ p {
 
 .btn-secondary:hover {
   background-color: var(--bg-surface-hover);
-  border-color: var(--text-secondary);
+  border-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
@@ -210,7 +232,7 @@ p {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(20, 184, 166, 0.4);
+  border-color: rgba(149, 142, 82, 0.4);
 }
 
 /* Section Wrapper */
@@ -226,7 +248,7 @@ p {
 }
 
 .section-dark h2, .section-dark h3, .section-dark p {
-  color: #F8FAFC;
+  color: #F3F0F8;
 }
 
 .section-dark p {
@@ -235,17 +257,17 @@ p {
 
 /* Glassmorphism Classes */
 .glass {
-  background: rgba(250, 251, 253, 0.8);
+  background: rgba(250, 249, 251, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 1px solid rgba(232, 229, 238, 0.8);
 }
 
 .dark .glass {
-  background: rgba(13, 21, 39, 0.8);
+  background: rgba(20, 14, 36, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+  border-bottom: 1px solid rgba(37, 27, 62, 0.8);
 }
 
 /* Navigation Menu Icon toggler */

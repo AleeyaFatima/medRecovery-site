@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X, Activity } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
   }, []);
 
   const navLinks = [
-    { name: 'Home', value: 'home' },
+    { name: 'Welcome', value: 'home' },
     { name: 'Services', value: 'services' },
     { name: 'Our Approach', value: 'approach' },
     { name: 'About', value: 'about' },
@@ -35,11 +35,28 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <button onClick={() => handleNavClick('home')} className="logo logo-btn">
-          <Activity className="logo-icon" />
-          <span className="logo-text">
-            Med<span className="logo-highlight">Recovery</span>
-          </span>
+        
+        {/* Brand Caduceus Logo Container */}
+        <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
+          <div className="logo-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="logo-caduceus">
+              <line x1="12" y1="2" x2="12" y2="22" strokeWidth="2.5" />
+              <circle cx="12" cy="2" r="1.5" fill="currentColor" />
+              <path d="M12 6 C6 2, 3 6, 12 10" strokeWidth="1.5" fill="none" />
+              <path d="M12 6 C18 2, 21 6, 12 10" strokeWidth="1.5" fill="none" />
+              <path d="M12 20 C6 18, 6 14, 12 12 C18 10, 18 6, 12 4" strokeWidth="1.5" fill="none" />
+              <path d="M12 20 C18 18, 18 14, 12 12 C6 10, 6 6, 12 4" strokeWidth="1.5" fill="none" />
+            </svg>
+          </div>
+          <div className="logo-right">
+            <div className="logo-main-text">
+              <span className="logo-purple">MedRecovery</span>
+              <span className="logo-gold"> Solutions, LLC</span>
+            </div>
+            <span className="logo-sub-tag">
+              Ensuring Physicians Get Paid For The Care They Give™
+            </span>
+          </div>
         </button>
 
         {/* Desktop Links */}
@@ -115,7 +132,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 80px;
+          height: 90px;
           display: flex;
           align-items: center;
           transition: all var(--transition-normal);
@@ -123,15 +140,15 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           border-bottom: 1px solid transparent;
         }
         .navbar.scrolled {
-          height: 70px;
-          background: rgba(250, 251, 253, 0.85);
+          height: 80px;
+          background: rgba(250, 249, 251, 0.9);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--color-border);
           box-shadow: var(--shadow-sm);
         }
         .dark .navbar.scrolled {
-          background: rgba(13, 21, 39, 0.85);
+          background: rgba(20, 14, 36, 0.9);
           border-bottom: 1px solid var(--color-border);
         }
         .nav-container {
@@ -140,32 +157,60 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           justify-content: space-between;
           height: 100%;
         }
-        .logo-btn {
+        
+        /* Logo styling */
+        .logo-btn-box {
           background: none;
           border: none;
           cursor: pointer;
           padding: 0;
           display: flex;
           align-items: center;
-          gap: 10px;
-          color: var(--text-primary);
+          gap: 12px;
+          text-align: left;
         }
-        .logo-icon {
+        .logo-left {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .logo-caduceus {
+          width: 32px;
+          height: 32px;
           color: var(--color-primary);
-          stroke-width: 2.5;
+          stroke: currentColor;
+          stroke-width: 2;
         }
-        .logo-text {
+        .logo-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .logo-main-text {
           font-family: var(--font-heading);
           font-weight: 800;
           font-size: 1.35rem;
           letter-spacing: -0.03em;
+          line-height: 1.1;
         }
-        .logo-highlight {
+        .logo-purple {
+          color: var(--color-primary);
+        }
+        .logo-gold {
           color: var(--color-accent);
         }
+        .logo-sub-tag {
+          font-size: 0.62rem;
+          font-weight: 700;
+          color: var(--color-accent);
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+          margin-top: 2px;
+        }
+        
         .nav-links-desktop {
           display: flex;
-          gap: 32px;
+          gap: 28px;
         }
         .nav-link-btn {
           background: none;
@@ -175,7 +220,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           font-family: var(--font-sans);
           font-weight: 500;
           font-size: 0.95rem;
-          transition: color var(--transition-fast);
+          transition: all var(--transition-fast);
           position: relative;
           padding: 8px 0;
         }
@@ -190,17 +235,14 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           transition: width var(--transition-fast);
         }
         .nav-link-btn:hover {
-          color: var(--text-primary);
+          color: var(--color-primary);
         }
         .nav-link-btn:hover::after, .nav-link-btn.active::after {
           width: 100%;
         }
         .nav-link-btn.active {
           color: var(--color-primary);
-          font-weight: 600;
-        }
-        .dark .nav-link-btn.active {
-          color: var(--color-primary);
+          font-weight: 700;
         }
         
         .nav-actions {
@@ -221,7 +263,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           justify-content: center;
         }
         .theme-toggle:hover {
-          color: var(--text-primary);
+          color: var(--color-primary);
           background-color: var(--bg-surface-hover);
         }
         .btn-nav-cta {
@@ -238,7 +280,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           height: 100vh;
-          background: rgba(8, 17, 31, 0.4);
+          background: rgba(15, 11, 30, 0.4);
           z-index: 1001;
           opacity: 0;
           visibility: hidden;
@@ -257,7 +299,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           max-width: 320px;
           height: 100%;
           background: var(--bg-surface);
-          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
           padding: 24px;
           display: flex;
           flex-direction: column;
@@ -306,7 +348,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           width: 100%;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1080px) {
           .nav-links-desktop, .btn-nav-cta {
             display: none;
           }

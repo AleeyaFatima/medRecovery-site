@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, ShieldAlert, Award, ArrowUp } from 'lucide-react';
+import { ShieldAlert, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,10 +17,17 @@ export default function Footer() {
           
           {/* Company Brief */}
           <div className="footer-column brief-col">
-            <a href="#home" className="footer-logo">
-              <Activity className="logo-icon" />
+            <div className="footer-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="logo-caduceus-footer">
+                <line x1="12" y1="2" x2="12" y2="22" strokeWidth="2.5" />
+                <circle cx="12" cy="2" r="1.5" fill="currentColor" />
+                <path d="M12 6 C6 2, 3 6, 12 10" strokeWidth="1.5" fill="none" />
+                <path d="M12 6 C18 2, 21 6, 12 10" strokeWidth="1.5" fill="none" />
+                <path d="M12 20 C6 18, 6 14, 12 12 C18 10, 18 6, 12 4" strokeWidth="1.5" fill="none" />
+                <path d="M12 20 C18 18, 18 14, 12 12 C6 10, 6 6, 12 4" strokeWidth="1.5" fill="none" />
+              </svg>
               <span className="logo-text">Med<span className="logo-highlight">Recovery</span></span>
-            </a>
+            </div>
             <p className="footer-tagline">
               "Ensuring physicians get paid for the care they give."™
             </p>
@@ -80,7 +87,7 @@ export default function Footer() {
         {/* Bottom Footer Info */}
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <span>&copy; {currentYear} MedRecovery Solutions. All rights reserved.</span>
+            <span>&copy; {currentYear} MedRecovery Solutions, LLC. All rights reserved.</span>
             <div className="legal-links">
               <a href="#">Privacy Policy</a>
               <span className="dot-divider">&middot;</span>
@@ -126,8 +133,11 @@ export default function Footer() {
           color: #FFFFFF;
           margin-bottom: 20px;
         }
-        .footer-logo .logo-icon {
+        .logo-caduceus-footer {
+          width: 28px;
+          height: 28px;
           color: var(--color-accent);
+          stroke: currentColor;
         }
         .footer-logo .logo-text {
           font-family: var(--font-heading);
