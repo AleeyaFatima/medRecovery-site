@@ -115,7 +115,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 120px; /* Increased from 100px to accommodate larger logo */
+          height: 160px; /* Increased from 120px to comfortably fit the larger logo */
           display: flex;
           align-items: center;
           transition: all var(--transition-normal);
@@ -123,7 +123,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           border-bottom: 1px solid transparent;
         }
         .navbar.scrolled {
-          height: 95px; /* Increased from 85px to accommodate larger logo */
+          height: 125px; /* Increased from 95px */
           background: rgba(250, 249, 251, 0.94);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
@@ -153,12 +153,12 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           flex-shrink: 0;
         }
         .logo-img-branding {
-          height: 88px; /* Increased from 68px to make it prominent and readable */
+          height: 135px; /* Increased from 88px for full readability of logo and tagline */
           object-fit: contain;
           transition: all var(--transition-normal);
         }
         .navbar.scrolled .logo-img-branding {
-          height: 68px; /* Increased from 52px */
+          height: 105px; /* Increased from 68px */
         }
         .dark .logo-img-branding {
           /* Apply high-contrast drop-shadow halo glow to stand out transparently on dark purple/navy background */

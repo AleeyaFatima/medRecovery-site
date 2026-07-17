@@ -247,7 +247,7 @@ p {
 
 /* Page Unified Glassmorphic Frame Wrapper */
 .page-content {
-  margin: 130px auto 40px auto;
+  margin: 180px auto 40px auto;
   padding: 0 0 20px 0;
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.45);
