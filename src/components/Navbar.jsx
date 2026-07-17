@@ -36,27 +36,13 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         
-        {/* Brand Caduceus Logo Container */}
+        {/* Brand Image Logo Container */}
         <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
-          <div className="logo-left">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="logo-caduceus">
-              <line x1="12" y1="2" x2="12" y2="22" strokeWidth="2.5" />
-              <circle cx="12" cy="2" r="1.5" fill="currentColor" />
-              <path d="M12 6 C6 2, 3 6, 12 10" strokeWidth="1.5" fill="none" />
-              <path d="M12 6 C18 2, 21 6, 12 10" strokeWidth="1.5" fill="none" />
-              <path d="M12 20 C6 18, 6 14, 12 12 C18 10, 18 6, 12 4" strokeWidth="1.5" fill="none" />
-              <path d="M12 20 C18 18, 18 14, 12 12 C6 10, 6 6, 12 4" strokeWidth="1.5" fill="none" />
-            </svg>
-          </div>
-          <div className="logo-right">
-            <div className="logo-main-text">
-              <span className="logo-purple">MedRecovery</span>
-              <span className="logo-gold"> Solutions, LLC</span>
-            </div>
-            <span className="logo-sub-tag">
-              Ensuring Physicians Get Paid For The Care They Give™
-            </span>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="MedRecovery Solutions, LLC Logo" 
+            className="logo-img-branding" 
+          />
         </button>
 
         {/* Desktop Links */}
@@ -100,7 +86,12 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
       <div className={`mobile-menu-overlay ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(false)}>
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-menu-header">
-            <span className="logo-text">MedRecovery</span>
+            <img 
+              src="/logo.png" 
+              alt="MedRecovery Solutions, LLC Logo" 
+              className="logo-img-branding" 
+              style={{ height: '50px' }}
+            />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
             </button>
@@ -132,7 +123,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 90px;
+          height: 100px;
           display: flex;
           align-items: center;
           transition: all var(--transition-normal);
@@ -141,14 +132,14 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         }
         .navbar.scrolled {
           height: 80px;
-          background: rgba(250, 249, 251, 0.9);
+          background: rgba(250, 249, 251, 0.92);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--color-border);
           box-shadow: var(--shadow-sm);
         }
         .dark .navbar.scrolled {
-          background: rgba(20, 14, 36, 0.9);
+          background: rgba(20, 14, 36, 0.92);
           border-bottom: 1px solid var(--color-border);
         }
         .nav-container {
@@ -166,46 +157,18 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           padding: 0;
           display: flex;
           align-items: center;
-          gap: 12px;
-          text-align: left;
         }
-        .logo-left {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .logo-img-branding {
+          height: 65px;
+          max-width: 100%;
+          object-fit: contain;
+          transition: all var(--transition-normal);
         }
-        .logo-caduceus {
-          width: 32px;
-          height: 32px;
-          color: var(--color-primary);
-          stroke: currentColor;
-          stroke-width: 2;
+        .navbar.scrolled .logo-img-branding {
+          height: 52px;
         }
-        .logo-right {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .logo-main-text {
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: 1.35rem;
-          letter-spacing: -0.03em;
-          line-height: 1.1;
-        }
-        .logo-purple {
-          color: var(--color-primary);
-        }
-        .logo-gold {
-          color: var(--color-accent);
-        }
-        .logo-sub-tag {
-          font-size: 0.62rem;
-          font-weight: 700;
-          color: var(--color-accent);
-          text-transform: uppercase;
-          letter-spacing: 0.02em;
-          margin-top: 2px;
+        .dark .logo-img-branding {
+          filter: brightness(1.15) contrast(1.05); /* Enhance logo readability in dark mode */
         }
         
         .nav-links-desktop {

@@ -18,15 +18,11 @@ export default function Footer() {
           {/* Company Brief */}
           <div className="footer-column brief-col">
             <div className="footer-logo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="logo-caduceus-footer">
-                <line x1="12" y1="2" x2="12" y2="22" strokeWidth="2.5" />
-                <circle cx="12" cy="2" r="1.5" fill="currentColor" />
-                <path d="M12 6 C6 2, 3 6, 12 10" strokeWidth="1.5" fill="none" />
-                <path d="M12 6 C18 2, 21 6, 12 10" strokeWidth="1.5" fill="none" />
-                <path d="M12 20 C6 18, 6 14, 12 12 C18 10, 18 6, 12 4" strokeWidth="1.5" fill="none" />
-                <path d="M12 20 C18 18, 18 14, 12 12 C6 10, 6 6, 12 4" strokeWidth="1.5" fill="none" />
-              </svg>
-              <span className="logo-text">Med<span className="logo-highlight">Recovery</span></span>
+              <img 
+                src="/logo.png" 
+                alt="MedRecovery Solutions, LLC Logo" 
+                className="logo-img-footer"
+              />
             </div>
             <p className="footer-tagline">
               "Ensuring physicians get paid for the care they give."™
@@ -128,25 +124,12 @@ export default function Footer() {
         .footer-logo {
           display: flex;
           align-items: center;
-          gap: 10px;
-          text-decoration: none;
-          color: #FFFFFF;
           margin-bottom: 20px;
         }
-        .logo-caduceus-footer {
-          width: 28px;
-          height: 28px;
-          color: var(--color-accent);
-          stroke: currentColor;
-        }
-        .footer-logo .logo-text {
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: 1.35rem;
-          letter-spacing: -0.03em;
-        }
-        .footer-logo .logo-highlight {
-          color: var(--color-accent);
+        .logo-img-footer {
+          height: 60px;
+          object-fit: contain;
+          filter: brightness(1.2) contrast(1.1); /* make logo stand out on dark background */
         }
         
         .footer-tagline {
