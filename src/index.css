@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-  /* Colors - Matched to company logo & live branding */
+  /* Colors - Matched to company logo & enhanced user shades */
   --bg-primary: #FAF9FB;
   --bg-surface: #FFFFFF;
   --bg-surface-hover: #F6F4FA;
-  --text-primary: #1C1527;
+  --text-primary: #002851; /* Enhanced prominent dark blue text */
   --text-secondary: #4A3E5D;
   --text-muted: #7E7092;
   
-  --color-primary: #5A3791; /* Company Purple */
-  --color-primary-hover: #452771;
-  --color-accent: #958E52; /* Company Gold/Olive */
-  --color-accent-bg: rgba(149, 142, 82, 0.08);
-  --color-accent-hover: #7E7845;
-  --color-glow: #00A8A9; /* Company Testimonial Teal */
-  --color-dark-section: #0F0B1E; /* Deep brand purple-navy */
+  --color-primary: #5831AD; /* Deep Purple shade */
+  --color-primary-hover: #41208D;
+  --color-accent: #DDA92E; /* Bright Gold shade */
+  --color-accent-bg: rgba(221, 169, 46, 0.08);
+  --color-accent-hover: #C29124;
+  --color-glow: #00A8A9; /* Testimonial Teal */
+  --color-dark-section: #002851; /* Rich Dark Blue shade */
+  --color-dark-olive: #616138; /* Gold/Olive shade */
   --color-success: #22C55E;
   --color-border: #E8E5EE;
   
@@ -42,22 +43,22 @@
 }
 
 :root.dark {
-  --bg-primary: #0A0714;
-  --bg-surface: #140E24;
-  --bg-surface-hover: #1E1536;
+  --bg-primary: #07050F;
+  --bg-surface: #100C22;
+  --bg-surface-hover: #181232;
   --text-primary: #F3F0F8;
   --text-secondary: #AAA1BA;
   --text-muted: #7E7490;
   
-  --color-primary: #8E5AD4;
-  --color-primary-hover: #A57CE2;
-  --color-accent: #C3BB84;
-  --color-accent-bg: rgba(195, 187, 132, 0.1);
-  --color-accent-hover: #B2A86A;
+  --color-primary: #764AD9;
+  --color-primary-hover: #8D64EB;
+  --color-accent: #E2B74A;
+  --color-accent-bg: rgba(226, 183, 74, 0.1);
+  --color-accent-hover: #D5A632;
   --color-glow: #00D2D3;
-  --color-dark-section: #05030B;
+  --color-dark-section: #001A36;
   --color-success: #4ADE80;
-  --color-border: #251B3E;
+  --color-border: #20173A;
   
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);

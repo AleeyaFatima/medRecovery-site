@@ -41,7 +41,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         {/* Brand Image Logo Container */}
         <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
           <img 
-            src="/logo.png" 
+            src="/logo.png?v=2" 
             alt="MedRecovery Solutions, LLC Logo" 
             className="logo-img-branding" 
           />
@@ -85,10 +85,10 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-menu-header">
             <img 
-              src="/logo.png" 
+              src="/logo.png?v=2" 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
-              style={{ height: '48px', mixBlendMode: 'normal', backgroundColor: '#FFFFFF', padding: '4px 8px', borderRadius: '4px' }}
+              style={{ height: '60px' }}
             />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
@@ -115,7 +115,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 100px;
+          height: 120px; /* Increased from 100px to accommodate larger logo */
           display: flex;
           align-items: center;
           transition: all var(--transition-normal);
@@ -123,7 +123,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           border-bottom: 1px solid transparent;
         }
         .navbar.scrolled {
-          height: 85px;
+          height: 95px; /* Increased from 85px to accommodate larger logo */
           background: rgba(250, 249, 251, 0.94);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
@@ -153,25 +153,16 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           flex-shrink: 0;
         }
         .logo-img-branding {
-          height: 68px;
+          height: 88px; /* Increased from 68px to make it prominent and readable */
           object-fit: contain;
-          mix-blend-mode: multiply; /* Blends white background natively in Light Mode */
           transition: all var(--transition-normal);
         }
         .navbar.scrolled .logo-img-branding {
-          height: 52px;
+          height: 68px; /* Increased from 52px */
         }
         .dark .logo-img-branding {
-          mix-blend-mode: normal;
-          background-color: rgba(255, 255, 255, 0.96); /* Elegant pill badge in Dark Mode */
-          padding: 6px 12px;
-          border-radius: var(--radius-sm);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .dark .navbar.scrolled .logo-img-branding {
-          padding: 4px 8px;
-          height: 44px;
+          /* Apply high-contrast drop-shadow halo glow to stand out transparently on dark purple/navy background */
+          filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8)) drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
         }
         
         /* Prominent menu tab layout similar to older site but modern */
@@ -192,7 +183,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           border: none;
           border-right: 1px solid var(--color-border);
           cursor: pointer;
-          color: #2D2A3A; /* Prominent dark color text in Light Mode */
+          color: var(--text-primary);
           font-family: var(--font-sans);
           font-weight: 700;
           font-size: 0.82rem;

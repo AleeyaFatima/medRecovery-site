@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="footer-column brief-col">
             <div className="footer-logo">
               <img 
-                src="/logo.png" 
+                src="/logo.png?v=2" 
                 alt="MedRecovery Solutions, LLC Logo" 
                 className="logo-img-footer"
               />
@@ -127,13 +127,11 @@ export default function Footer() {
           margin-bottom: 20px;
         }
         .logo-img-footer {
-          height: 52px;
+          height: 72px; /* Increased size to look prominent */
           object-fit: contain;
-          background-color: rgba(255, 255, 255, 0.96); /* pill badge matching header in dark fold */
-          padding: 6px 12px;
-          border-radius: var(--radius-sm);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          /* Transparent vector filter styling for high-contrast on dark backgrounds */
+          filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8)) drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+          transition: all var(--transition-normal);
         }
         
         .footer-tagline {
