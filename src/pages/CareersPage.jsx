@@ -36,54 +36,41 @@ export default function CareersPage() {
       className="page-content"
     >
       <div className="page-header section-dark">
-        <div className="container">
-          <h1 className="page-title">Work With Us</h1>
-          <p className="page-desc">
-            Grow your career with an industry-leading RCM agency based in the Houston Medical Center district.
-          </p>
-        </div>
-      </div>
-
-      {/* Intro Block */}
-      <section className="section careers-intro-block">
-        <div className="container">
-          <div className="grid-2 careers-intro-grid">
+        <div className="container page-header-grid">
+          
+          <div className="page-header-left">
+            <span className="section-tag">Join MedRecovery</span>
+            <h1 className="page-title">Work With Us</h1>
+            <p className="page-desc">
+              Grow your career with an industry-leading RCM agency based in the Houston Medical Center district.
+            </p>
+            <p className="page-desc-secondary">
+              We believe that helping clinics recover revenue requires a supportive, collaborative internal workplace. We offer continuous AAPC educational training, comprehensive healthcare benefits, and remote flexibility.
+            </p>
             
-            <div className="careers-text">
-              <span className="section-tag">Join MedRecovery</span>
-              <h2>A Team Dedicated to Clinical Partnerships</h2>
-              <p>
-                We believe that helping clinics recover revenue requires a supportive, collaborative internal workplace. At MedRecovery Solutions, we offer continuous AAPC educational training, comprehensive healthcare benefits, and remote flexibility.
-              </p>
-              <p>
-                Whether you are an experienced billing operations lead or a certified medical coding analyst, we provide the tools and resources you need to deliver high-integrity audits.
-              </p>
-              
-              <div className="careers-perks">
-                <div className="perk-item">
-                  <Check size={16} className="perk-icon" />
-                  <span>AAPC Membership & Exam Sponsorships</span>
-                </div>
-                <div className="perk-item">
-                  <Check size={16} className="perk-icon" />
-                  <span>Competitive 401(k) Matching Options</span>
-                </div>
+            <div className="careers-perks">
+              <div className="perk-item">
+                <Check size={16} className="perk-icon" />
+                <span>AAPC Membership & Exam Sponsorships</span>
+              </div>
+              <div className="perk-item">
+                <Check size={16} className="perk-icon" />
+                <span>Competitive 401(k) Matching Options</span>
               </div>
             </div>
-
-            {/* Careers Page Illustration Image */}
-            <div className="careers-img-container">
-              <img 
-                src="/careers_img.png" 
-                alt="MedRecovery Solutions workplace office environment" 
-                className="careers-img"
-              />
-              <div className="img-glow-shadow"></div>
-            </div>
-
           </div>
+
+          <div className="header-img-box">
+            <img 
+              src="/careers_img.png" 
+              alt="MedRecovery Solutions workplace office environment" 
+              className="header-img"
+            />
+            <div className="img-glow-shadow"></div>
+          </div>
+
         </div>
-      </section>
+      </div>
 
       {/* Open Openings */}
       <section className="section openings-section">
@@ -189,77 +176,75 @@ export default function CareersPage() {
 
       <style>{`
         .page-header {
-          padding-top: 60px;
-          padding-bottom: 60px;
+          padding-top: 190px;
+          padding-bottom: 80px;
           background: linear-gradient(135deg, var(--color-dark-section) 0%, var(--color-primary) 100%);
-          text-align: center;
+          text-align: left;
+        }
+        .page-header-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 60px;
+          align-items: center;
+        }
+        .page-header-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
         .page-title {
           font-size: clamp(2rem, 4vw, 3rem);
           color: #FFFFFF;
           margin-bottom: 16px;
+          line-height: 1.2;
+          font-family: var(--font-heading);
+          font-weight: 800;
         }
         .page-desc {
           font-size: 1.15rem;
-          color: rgba(255, 255, 255, 0.85);
-          max-width: 700px;
-          margin: 0 auto;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 12px;
+          line-height: 1.5;
+        }
+        .page-desc-secondary {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.75);
+          margin-bottom: 20px;
+          line-height: 1.5;
         }
         
-        .careers-intro-block {
-          background-color: transparent;
-          border-bottom: 1px solid var(--color-border);
-        }
-        .careers-intro-grid {
-          align-items: center;
-          gap: 60px;
-        }
-        .careers-text {
-          text-align: left;
-        }
-        .careers-text h2 {
-          font-size: 2.2rem;
-          margin-top: 12px;
-          margin-bottom: 20px;
-        }
-        .careers-text p {
-          font-size: 1.05rem;
-          color: var(--text-secondary);
-          margin-bottom: 20px;
-          line-height: 1.6;
-        }
         .careers-perks {
           display: flex;
           flex-direction: column;
-          gap: 12px;
-          margin-top: 24px;
+          gap: 10px;
+          margin-top: 8px;
         }
         .perk-item {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
           font-size: 0.95rem;
           font-weight: 600;
-          color: var(--text-primary);
+          color: #FFFFFF;
         }
         .perk-icon {
           color: var(--color-accent);
+          flex-shrink: 0;
         }
         
-        .careers-img-container {
+        .header-img-box {
           position: relative;
           width: 100%;
-          max-width: 480px;
           aspect-ratio: 4/3;
           border-radius: var(--radius-md);
         }
-        .careers-img {
+        .header-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: var(--radius-md);
-          border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-md);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: var(--shadow-lg);
           position: relative;
           z-index: 2;
         }
@@ -271,10 +256,8 @@ export default function CareersPage() {
           opacity: 0.5;
         }
         
-        /* Openings List */
         .openings-section {
           background-color: transparent;
-          border-bottom: 1px solid var(--color-border);
         }
         .openings-list {
           display: flex;
@@ -285,65 +268,69 @@ export default function CareersPage() {
         .position-card {
           text-align: left;
           background-color: var(--bg-surface);
-          border-left: 4px solid var(--color-primary);
         }
         .pos-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 12px;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 16px;
+          margin-bottom: 12px;
         }
         .pos-title-box {
           display: flex;
           align-items: center;
           gap: 12px;
+          color: var(--text-primary);
         }
         .pos-title-box h3 {
           font-size: 1.2rem;
-          margin: 0;
+          font-weight: 700;
         }
         .pos-icon {
           color: var(--color-primary);
         }
         .pos-type-badge {
-          font-size: 0.75rem;
-          font-weight: 700;
           background-color: var(--color-accent-bg);
           color: var(--color-primary);
+          font-size: 0.75rem;
+          font-weight: 700;
           padding: 4px 12px;
           border-radius: 50px;
         }
+        .pos-body {
+          font-size: 0.9rem;
+          color: var(--text-secondary);
+        }
         .pos-dept {
-          font-size: 0.85rem;
-          color: var(--text-muted);
+          display: block;
+          margin-bottom: 6px;
         }
         .pos-reqs {
-          font-size: 0.95rem;
-          color: var(--text-secondary);
-          margin-top: 8px;
+          color: var(--text-muted);
         }
         
-        /* Application Form */
         .app-form-section {
           background-color: transparent;
         }
         .app-form-card {
-          background-color: rgba(255, 255, 255, 0.7) !important;
+          background-color: rgba(255, 255, 255, 0.85) !important;
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.4);
-          padding: 40px;
-          border-radius: var(--radius-md);
+        }
+        .dark .app-form-card {
+          background-color: rgba(16, 12, 34, 0.85) !important;
         }
         .form-heading {
-          font-size: 1.6rem;
+          font-size: 1.5rem;
           margin-bottom: 8px;
+          text-align: center;
+          color: var(--text-primary);
         }
         .form-subheading {
-          font-size: 0.9rem;
-          color: var(--text-muted);
+          font-size: 0.95rem;
+          color: var(--text-secondary);
+          text-align: center;
           margin-bottom: 32px;
         }
         .careers-form {
@@ -358,7 +345,7 @@ export default function CareersPage() {
           gap: 8px;
         }
         .form-group label {
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
           color: var(--text-primary);
         }
@@ -367,40 +354,53 @@ export default function CareersPage() {
           padding: 12px;
           border-radius: var(--radius-sm);
           border: 1px solid var(--color-border);
-          background-color: var(--bg-surface);
+          background-color: var(--bg-primary);
           color: var(--text-primary);
           font-size: 0.95rem;
+          transition: border-color var(--transition-fast);
         }
         .form-input:focus {
           outline: none;
           border-color: var(--color-primary);
         }
         .form-submit-btn {
-          width: 100%;
           margin-top: 10px;
+          width: 100%;
         }
         
         .form-success {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          padding: 40px 0;
           text-align: center;
+          padding: 40px 0;
+          gap: 16px;
         }
         .success-send {
-          color: #22C55E;
-          margin-bottom: 16px;
+          color: var(--color-success);
         }
-        
+        .form-success h4 {
+          font-size: 1.3rem;
+          color: var(--text-primary);
+        }
+        .form-success p {
+          font-size: 0.95rem;
+          color: var(--text-secondary);
+        }
+
         @media (max-width: 900px) {
-          .careers-intro-grid {
+          .page-header-grid {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .careers-img-container {
+          .page-header {
+            padding-top: 170px;
+            padding-bottom: 60px;
+          }
+          .header-img-box {
             margin-left: auto;
             margin-right: auto;
+            max-width: 500px;
           }
         }
       `}</style>

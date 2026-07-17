@@ -127,10 +127,9 @@ export default function Footer() {
           margin-bottom: 20px;
         }
         .logo-img-footer {
-          height: 72px; /* Increased size to look prominent */
+          height: 90px; /* Sized bigger for full readability */
           object-fit: contain;
-          /* Transparent vector filter styling for high-contrast on dark backgrounds */
-          filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8)) drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+          filter: none; /* Simple presentation */
           transition: all var(--transition-normal);
         }
         

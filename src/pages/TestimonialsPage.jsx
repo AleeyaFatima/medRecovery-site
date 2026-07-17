@@ -49,77 +49,64 @@ export default function TestimonialsPage() {
       className="page-content"
     >
       <div className="page-header section-dark">
-        <div className="container">
-          <h1 className="page-title">Client Success Stories</h1>
-          <p className="page-desc">
-            What clinical directors, office managers, and physicians say about our revenue cycle audits.
-          </p>
-        </div>
-      </div>
+        <div className="container page-header-grid">
+          
+          <div className="header-img-box">
+            <img 
+              src="/testimonials_img.png" 
+              alt="Smiling physician representing clinical success" 
+              className="header-img"
+            />
+            <div className="img-glow-shadow"></div>
+          </div>
 
-      {/* Testimonials Visual Block */}
-      <section className="section testimonials-feature-block">
-        <div className="container">
-          <div className="grid-2 testimonials-grid-container">
+          <div className="page-header-right">
+            <span className="section-tag">Partner Testimonials</span>
+            <h1 className="page-title">Client Success Stories</h1>
             
-            {/* Image */}
-            <div className="testimonials-img-container">
-              <img 
-                src="/testimonials_img.png" 
-                alt="Smiling physician representing clinical success" 
-                className="testimonials-img"
-              />
-              <div className="img-glow-shadow"></div>
-            </div>
-
-            <div className="testimonials-interactive">
-              <span className="section-tag">Partner Testimonials</span>
-              <h2>Trusted By Houston's Medical Community</h2>
+            <div className="testimonials-slider-box">
+              <Quote size={32} className="quote-indicator-icon" />
               
-              <div className="testimonials-slider-box">
-                <Quote size={40} className="quote-indicator-icon" />
-                
-                <div className="slider-content-height">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeIdx}
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -15 }}
-                      transition={{ duration: 0.3 }}
-                      className="active-testimonial-card"
-                    >
-                      <div className="stars-strip">
-                        {[...Array(testimonials[activeIdx].rating)].map((_, i) => (
-                          <Star key={i} size={16} fill="var(--color-accent)" stroke="var(--color-accent)" />
-                        ))}
-                      </div>
-                      <p className="testimonial-quote-text">
-                        "{testimonials[activeIdx].quote}"
-                      </p>
-                      <div className="testimonial-meta">
-                        <span className="meta-author"><strong>{testimonials[activeIdx].author}</strong></span>
-                        <span className="meta-org">{testimonials[activeIdx].org}</span>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+              <div className="slider-content-height">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIdx}
+                    initial={{ opacity: 0, x: 15 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -15 }}
+                    transition={{ duration: 0.3 }}
+                    className="active-testimonial-card"
+                  >
+                    <div className="stars-strip">
+                      {[...Array(testimonials[activeIdx].rating)].map((_, i) => (
+                        <Star key={i} size={14} fill="var(--color-accent)" stroke="var(--color-accent)" />
+                      ))}
+                    </div>
+                    <p className="testimonial-quote-text">
+                      "{testimonials[activeIdx].quote}"
+                    </p>
+                    <div className="testimonial-meta">
+                      <span className="meta-author"><strong>{testimonials[activeIdx].author}</strong></span>
+                      <span className="meta-org">{testimonials[activeIdx].org}</span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                <div className="slider-controls">
-                  <button onClick={handlePrev} className="slider-btn" aria-label="Previous testimonial">
-                    <ChevronLeft size={20} />
-                  </button>
-                  <span className="slider-counter">{activeIdx + 1} / {testimonials.length}</span>
-                  <button onClick={handleNext} className="slider-btn" aria-label="Next testimonial">
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
+              <div className="slider-controls">
+                <button onClick={handlePrev} className="slider-btn" aria-label="Previous testimonial">
+                  <ChevronLeft size={18} />
+                </button>
+                <span className="slider-counter">{activeIdx + 1} / {testimonials.length}</span>
+                <button onClick={handleNext} className="slider-btn" aria-label="Next testimonial">
+                  <ChevronRight size={18} />
+                </button>
               </div>
             </div>
-
           </div>
+
         </div>
-      </section>
+      </div>
 
       {/* Trust Quote Grid */}
       <section className="section quotes-grid-section">
@@ -132,17 +119,17 @@ export default function TestimonialsPage() {
           <div className="grid-3 cases-grid">
             <div className="case-card card">
               <span className="case-stat">$340k+</span>
-              <h4>A/R Recovery</h4>
+              <h4 className="case-title">A/R Recovery</h4>
               <p>Old aged accounts receivable successfully audited and paid within 90 days.</p>
             </div>
             <div className="case-card card">
               <span className="case-stat">98.7%</span>
-              <h4>Clean Claim Rate</h4>
+              <h4 className="case-title">Clean Claim Rate</h4>
               <p>Industry-leading filing standards preventing payer rejections and delay modifiers.</p>
             </div>
             <div className="case-card card">
               <span className="case-stat">0%</span>
-              <h4>Upfront Fees</h4>
+              <h4 className="case-title">Upfront Fees</h4>
               <p>Risk-free collections partnership based completely on performance metrics.</p>
             </div>
           </div>
@@ -151,102 +138,94 @@ export default function TestimonialsPage() {
 
       <style>{`
         .page-header {
-          padding-top: 60px;
-          padding-bottom: 60px;
+          padding-top: 190px;
+          padding-bottom: 80px;
           background: linear-gradient(135deg, var(--color-dark-section) 0%, var(--color-primary) 100%);
-          text-align: center;
+          text-align: left;
+        }
+        .page-header-grid {
+          display: grid;
+          grid-template-columns: 0.8fr 1.2fr;
+          gap: 60px;
+          align-items: center;
+        }
+        .page-header-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
         }
         .page-title {
           font-size: clamp(2rem, 4vw, 3rem);
           color: #FFFFFF;
-          margin-bottom: 16px;
-        }
-        .page-desc {
-          font-size: 1.15rem;
-          color: rgba(255, 255, 255, 0.85);
-          max-width: 700px;
-          margin: 0 auto;
-        }
-        
-        .testimonials-feature-block {
-          background-color: transparent;
-          border-bottom: 1px solid var(--color-border);
-        }
-        .testimonials-grid-container {
-          align-items: center;
-          gap: 60px;
-        }
-        .testimonials-interactive {
-          text-align: left;
-        }
-        .testimonials-interactive h2 {
-          font-size: 2.2rem;
-          margin-top: 12px;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
+          line-height: 1.2;
+          font-family: var(--font-heading);
+          font-weight: 800;
         }
         
         .testimonials-slider-box {
-          background-color: rgba(255, 255, 255, 0.7) !important;
+          background-color: rgba(255, 255, 255, 0.1) !important;
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.15);
           border-radius: var(--radius-md);
-          padding: 32px;
+          padding: 24px;
           position: relative;
+          width: 100%;
         }
         .quote-indicator-icon {
           color: var(--color-accent);
-          opacity: 0.15;
+          opacity: 0.25;
           position: absolute;
-          top: 20px;
-          left: 20px;
+          top: 16px;
+          right: 20px;
         }
-        
         .slider-content-height {
-          min-height: 180px;
+          min-height: 140px;
           display: flex;
           align-items: center;
         }
         .active-testimonial-card {
-          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          text-align: left;
         }
         .stars-strip {
           display: flex;
           gap: 4px;
-          margin-bottom: 16px;
         }
         .testimonial-quote-text {
-          font-size: 1.1rem;
-          line-height: 1.6;
-          color: var(--text-primary);
-          margin-bottom: 20px;
+          font-size: 1.05rem;
+          line-height: 1.5;
+          color: #FFFFFF;
           font-style: italic;
         }
         .testimonial-meta {
           display: flex;
           flex-direction: column;
+          font-size: 0.85rem;
         }
         .meta-author {
-          font-size: 0.95rem;
-          color: var(--text-primary);
+          color: var(--color-accent);
         }
         .meta-org {
-          font-size: 0.85rem;
-          color: var(--text-muted);
+          color: rgba(255, 255, 255, 0.7);
         }
         
         .slider-controls {
           display: flex;
           align-items: center;
           gap: 16px;
-          margin-top: 24px;
+          margin-top: 16px;
         }
         .slider-btn {
-          background-color: var(--bg-surface);
-          border: 1px solid var(--color-border);
-          color: var(--text-primary);
-          width: 38px;
-          height: 38px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #FFFFFF;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           cursor: pointer;
           display: flex;
@@ -255,30 +234,29 @@ export default function TestimonialsPage() {
           transition: all var(--transition-fast);
         }
         .slider-btn:hover {
-          background-color: var(--color-primary);
-          color: #FFFFFF;
-          border-color: var(--color-primary);
+          background-color: var(--color-accent);
+          border-color: var(--color-accent);
+          color: #002851;
         }
         .slider-counter {
-          font-size: 0.9rem;
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.7);
           font-weight: 600;
-          color: var(--text-muted);
         }
         
-        .testimonials-img-container {
+        .header-img-box {
           position: relative;
           width: 100%;
-          max-width: 480px;
-          aspect-ratio: 4/5;
+          aspect-ratio: 4/3;
           border-radius: var(--radius-md);
         }
-        .testimonials-img {
+        .header-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: var(--radius-md);
-          border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-md);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: var(--shadow-lg);
           position: relative;
           z-index: 2;
         }
@@ -290,7 +268,6 @@ export default function TestimonialsPage() {
           opacity: 0.5;
         }
         
-        /* Case Studies Grid */
         .quotes-grid-section {
           background-color: transparent;
         }
@@ -298,36 +275,44 @@ export default function TestimonialsPage() {
           margin-top: 40px;
         }
         .case-card {
-          text-align: center;
+          text-align: left;
           background-color: var(--bg-surface);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
         }
         .case-stat {
           font-family: var(--font-mono);
           font-size: 2.2rem;
           font-weight: 700;
           color: var(--color-primary);
-          margin-bottom: 12px;
-        }
-        .case-card h4 {
-          font-size: 1.1rem;
+          display: block;
           margin-bottom: 8px;
         }
+        .case-title {
+          font-size: 1.15rem;
+          margin-bottom: 8px;
+          color: var(--text-primary);
+        }
         .case-card p {
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           color: var(--text-secondary);
+          line-height: 1.5;
         }
 
         @media (max-width: 900px) {
-          .testimonials-grid-container {
+          .page-header-grid {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .testimonials-img-container {
+          .page-header-grid > :first-child {
+            order: 2;
+          }
+          .page-header {
+            padding-top: 170px;
+            padding-bottom: 60px;
+          }
+          .header-img-box {
             margin-left: auto;
             margin-right: auto;
+            max-width: 500px;
           }
         }
       `}</style>

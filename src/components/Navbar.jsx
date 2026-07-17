@@ -161,8 +161,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           height: 105px; /* Increased from 68px */
         }
         .dark .logo-img-branding {
-          /* Apply high-contrast drop-shadow halo glow to stand out transparently on dark purple/navy background */
-          filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8)) drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+          filter: none; /* Simple presentation */
         }
         
         /* Prominent menu tab layout similar to older site but modern */

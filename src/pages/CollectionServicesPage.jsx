@@ -36,12 +36,12 @@ export default function CollectionServicesPage() {
       <section className="section collections-feature-block">
         <div className="container">
           <div className="grid-2 collections-grid">
-            
+
             {/* Image */}
             <div className="collections-img-container">
-              <img 
-                src="/collection_services_img.png" 
-                alt="Medical Collections and accounts receivable dashboard audit" 
+              <img
+                src="/collection_services_img.png"
+                alt="Medical Collections and accounts receivable dashboard audit"
                 className="collections-img"
               />
               <div className="img-glow-shadow"></div>
