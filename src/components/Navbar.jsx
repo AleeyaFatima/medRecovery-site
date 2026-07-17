@@ -19,11 +19,13 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
 
   const navLinks = [
     { name: 'Welcome', value: 'home' },
+    { name: 'Unique Approach', value: 'approach' },
     { name: 'Services', value: 'services' },
-    { name: 'Our Approach', value: 'approach' },
-    { name: 'About', value: 'about' },
-    { name: 'FAQ', value: 'faq' },
-    { name: 'Contact', value: 'contact' },
+    { name: 'Leadership', value: 'leadership' },
+    { name: 'Collection Services', value: 'collections' },
+    { name: 'Careers', value: 'careers' },
+    { name: 'Contact Us/Get Started', value: 'contact' },
+    { name: 'Testimonials', value: 'testimonials' },
   ];
 
   const handleNavClick = (value) => {
@@ -45,7 +47,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           />
         </button>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation Link Tabs (Prominent tab-bar styling) */}
         <div className="nav-links-desktop">
           {navLinks.map((link) => (
             <button
@@ -68,10 +70,6 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <button onClick={() => handleNavClick('contact')} className="btn btn-primary btn-sm btn-nav-cta">
-            Schedule Consultation
-          </button>
-
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="menu-toggle"
@@ -90,7 +88,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
               src="/logo.png" 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
-              style={{ height: '50px' }}
+              style={{ height: '48px', mixBlendMode: 'normal', backgroundColor: '#FFFFFF', padding: '4px 8px', borderRadius: '4px' }}
             />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
@@ -106,12 +104,6 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
                 {link.name}
               </button>
             ))}
-            <button
-              className="btn btn-primary mobile-cta"
-              onClick={() => handleNavClick('contact')}
-            >
-              Schedule Consultation
-            </button>
           </div>
         </div>
       </div>
@@ -131,15 +123,15 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           border-bottom: 1px solid transparent;
         }
         .navbar.scrolled {
-          height: 80px;
-          background: rgba(250, 249, 251, 0.92);
+          height: 85px;
+          background: rgba(250, 249, 251, 0.94);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--color-border);
           box-shadow: var(--shadow-sm);
         }
         .dark .navbar.scrolled {
-          background: rgba(20, 14, 36, 0.92);
+          background: rgba(20, 14, 36, 0.94);
           border-bottom: 1px solid var(--color-border);
         }
         .nav-container {
@@ -147,9 +139,10 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           align-items: center;
           justify-content: space-between;
           height: 100%;
+          gap: 16px;
         }
         
-        /* Logo styling */
+        /* Logo blending style to look native, not pasted */
         .logo-btn-box {
           background: none;
           border: none;
@@ -157,61 +150,86 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           padding: 0;
           display: flex;
           align-items: center;
+          flex-shrink: 0;
         }
         .logo-img-branding {
-          height: 65px;
-          max-width: 100%;
+          height: 68px;
           object-fit: contain;
+          mix-blend-mode: multiply; /* Blends white background natively in Light Mode */
           transition: all var(--transition-normal);
         }
         .navbar.scrolled .logo-img-branding {
           height: 52px;
         }
         .dark .logo-img-branding {
-          filter: brightness(1.15) contrast(1.05); /* Enhance logo readability in dark mode */
+          mix-blend-mode: normal;
+          background-color: rgba(255, 255, 255, 0.96); /* Elegant pill badge in Dark Mode */
+          padding: 6px 12px;
+          border-radius: var(--radius-sm);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .navbar.scrolled .logo-img-branding {
+          padding: 4px 8px;
+          height: 44px;
         }
         
+        /* Prominent menu tab layout similar to older site but modern */
         .nav-links-desktop {
           display: flex;
-          gap: 28px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+          background: linear-gradient(to bottom, #FCFCFC 0%, #EAEAEA 100%);
+          box-shadow: var(--shadow-sm);
+        }
+        .dark .nav-links-desktop {
+          background: linear-gradient(to bottom, #231B3E 0%, #150E2A 100%);
+          border-color: var(--color-border);
         }
         .nav-link-btn {
-          background: none;
+          background: transparent;
           border: none;
+          border-right: 1px solid var(--color-border);
           cursor: pointer;
-          color: var(--text-secondary);
+          color: #2D2A3A; /* Prominent dark color text in Light Mode */
           font-family: var(--font-sans);
-          font-weight: 500;
-          font-size: 0.95rem;
+          font-weight: 700;
+          font-size: 0.82rem;
+          padding: 12px 16px;
           transition: all var(--transition-fast);
-          position: relative;
-          padding: 8px 0;
+          text-transform: capitalize;
         }
-        .nav-link-btn::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: var(--color-accent);
-          transition: width var(--transition-fast);
+        .dark .nav-link-btn {
+          color: #EAE5F5;
+          border-right: 1px solid var(--color-border);
+        }
+        .nav-link-btn:last-child {
+          border-right: none;
         }
         .nav-link-btn:hover {
+          background-color: rgba(90, 55, 145, 0.08);
           color: var(--color-primary);
         }
-        .nav-link-btn:hover::after, .nav-link-btn.active::after {
-          width: 100%;
+        .dark .nav-link-btn:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+          color: var(--color-accent);
         }
         .nav-link-btn.active {
-          color: var(--color-primary);
-          font-weight: 700;
+          background: linear-gradient(to bottom, var(--color-primary) 0%, #462573 100%) !important;
+          color: #FFFFFF !important;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .dark .nav-link-btn.active {
+          background: linear-gradient(to bottom, var(--color-primary) 0%, #462573 100%) !important;
+          color: #FFFFFF !important;
         }
         
         .nav-actions {
           display: flex;
           align-items: center;
           gap: 16px;
+          flex-shrink: 0;
         }
         .theme-toggle {
           background: none;
@@ -228,9 +246,6 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         .theme-toggle:hover {
           color: var(--color-primary);
           background-color: var(--bg-surface-hover);
-        }
-        .btn-nav-cta {
-          display: inline-flex;
         }
         .menu-toggle {
           display: none;
@@ -287,7 +302,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         .mobile-links {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 12px;
         }
         .mobile-link-btn {
           background: none;
@@ -297,7 +312,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           color: var(--text-primary);
           font-family: var(--font-sans);
           font-weight: 600;
-          font-size: 1.1rem;
+          font-size: 1rem;
           padding: 12px 0;
           border-bottom: 1px solid var(--color-border);
           width: 100%;
@@ -305,14 +320,9 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         .mobile-link-btn.active {
           color: var(--color-primary);
         }
-        .mobile-cta {
-          margin-top: 10px;
-          text-align: center;
-          width: 100%;
-        }
 
-        @media (max-width: 1080px) {
-          .nav-links-desktop, .btn-nav-cta {
+        @media (max-width: 1250px) {
+          .nav-links-desktop {
             display: none;
           }
           .menu-toggle {
@@ -322,6 +332,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
             border-radius: 50%;
             background-color: var(--bg-surface-hover);
             color: var(--text-primary);
+            padding: 8px;
           }
         }
       `}</style>

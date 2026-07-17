@@ -92,7 +92,7 @@ export default function ApproachPage() {
         }
         
         .approach-feature-block {
-          background-color: var(--bg-surface);
+          background-color: transparent;
           border-bottom: 1px solid var(--color-border);
         }
         .approach-grid-container {

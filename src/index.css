@@ -101,13 +101,15 @@ body::before {
   background-image: url('/clinic_bg.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.08;
+  opacity: 0.18; /* Increased from 0.08 to overcome solid white screens */
   pointer-events: none;
   transition: opacity var(--transition-normal);
+  filter: blur(2px) saturate(0.95); /* Elegant glass texture blur */
 }
 
 :root.dark body::before {
-  opacity: 0.03;
+  opacity: 0.07; /* Increased from 0.03 for rich dark mode background */
+  filter: blur(3px) brightness(0.6) saturate(0.8);
 }
 
 /* Layout Container */
@@ -217,10 +219,12 @@ p {
   font-size: 0.875rem;
 }
 
-/* Card Component */
+/* Card Component - Glassmorphic high-end card container */
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-md);
   padding: 32px;
   transition: all var(--transition-normal);
@@ -229,22 +233,53 @@ p {
   overflow: hidden;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(149, 142, 82, 0.4);
+.dark .card {
+  background-color: rgba(20, 14, 36, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Section Wrapper */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 8px 24px rgba(90, 55, 145, 0.08);
+  border-color: rgba(149, 142, 82, 0.5);
+}
+
+/* Page Unified Glassmorphic Frame Wrapper */
+.page-content {
+  margin: 130px auto 40px auto;
+  padding: 0 0 20px 0;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-lg), 0 20px 40px rgba(90, 55, 145, 0.03);
+  max-width: 1280px;
+  width: calc(100% - 48px);
+  overflow: hidden;
+}
+
+.dark .page-content {
+  background: rgba(10, 7, 20, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow-lg), 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Section Wrapper - Transparent to show textured clinic backdrop */
 .section {
-  padding-top: clamp(60px, 10vw, 120px);
-  padding-bottom: clamp(60px, 10vw, 120px);
+  padding-top: clamp(60px, 8vw, 100px);
+  padding-bottom: clamp(60px, 8vw, 100px);
   position: relative;
+  background: transparent !important;
 }
 
 .section-dark {
-  background-color: var(--color-dark-section);
+  background: rgba(15, 11, 30, 0.93) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .section-dark h2, .section-dark h3, .section-dark p {

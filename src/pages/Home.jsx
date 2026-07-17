@@ -95,7 +95,7 @@ export default function Home({ setCurrentPage }) {
 
       <style>{`
         .overview-section {
-          background-color: var(--bg-primary);
+          background-color: transparent;
         }
         .teaser-card {
           display: flex;

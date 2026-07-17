@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import ServicesPage from './pages/ServicesPage';
 import ApproachPage from './pages/ApproachPage';
-import AboutPage from './pages/AboutPage';
-import FAQPage from './pages/FAQPage';
+import ServicesPage from './pages/ServicesPage';
+import LeadershipPage from './pages/LeadershipPage';
+import CollectionServicesPage from './pages/CollectionServicesPage';
+import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
+import TestimonialsPage from './pages/TestimonialsPage';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -39,16 +41,20 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <Home key="home" setCurrentPage={setCurrentPage} />;
-      case 'services':
-        return <ServicesPage key="services" />;
       case 'approach':
         return <ApproachPage key="approach" />;
-      case 'about':
-        return <AboutPage key="about" />;
-      case 'faq':
-        return <FAQPage key="faq" />;
+      case 'services':
+        return <ServicesPage key="services" />;
+      case 'leadership':
+        return <LeadershipPage key="leadership" />;
+      case 'collections':
+        return <CollectionServicesPage key="collections" />;
+      case 'careers':
+        return <CareersPage key="careers" />;
       case 'contact':
         return <ContactPage key="contact" />;
+      case 'testimonials':
+        return <TestimonialsPage key="testimonials" />;
       default:
         return <Home key="home" setCurrentPage={setCurrentPage} />;
     }

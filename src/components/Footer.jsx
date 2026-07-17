@@ -127,9 +127,13 @@ export default function Footer() {
           margin-bottom: 20px;
         }
         .logo-img-footer {
-          height: 60px;
+          height: 52px;
           object-fit: contain;
-          filter: brightness(1.2) contrast(1.1); /* make logo stand out on dark background */
+          background-color: rgba(255, 255, 255, 0.96); /* pill badge matching header in dark fold */
+          padding: 6px 12px;
+          border-radius: var(--radius-sm);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-tagline {
