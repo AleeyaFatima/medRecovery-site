@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="footer-column brief-col">
             <div className="footer-logo">
               <img 
-                src="/logo.png?v=2" 
+                src="/logo.png?v=3" 
                 alt="MedRecovery Solutions, LLC Logo" 
                 className="logo-img-footer"
               />

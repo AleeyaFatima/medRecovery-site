@@ -41,7 +41,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         {/* Brand Image Logo Container */}
         <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
           <img 
-            src="/logo.png?v=2" 
+            src="/logo.png?v=3" 
             alt="MedRecovery Solutions, LLC Logo" 
             className="logo-img-branding" 
           />
@@ -85,7 +85,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-menu-header">
             <img 
-              src="/logo.png?v=2" 
+              src="/logo.png?v=3" 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
               style={{ height: '60px' }}
