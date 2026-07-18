@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="footer-column brief-col">
             <div className="footer-logo">
               <img 
-                src="/logo.png?v=3" 
+                src="/logo_dark.png?v=3" 
                 alt="MedRecovery Solutions, LLC Logo" 
                 className="logo-img-footer"
               />
@@ -103,9 +103,9 @@ export default function Footer() {
 
       <style>{`
         .footer {
-          background-color: var(--color-dark-section);
-          padding-top: 80px;
-          padding-bottom: 40px;
+          background-color: #4F2D75;
+          padding-top: 100px;
+          padding-bottom: 60px;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         .footer-grid {
@@ -122,27 +122,34 @@ export default function Footer() {
         }
         
         .footer-logo {
-          display: flex;
+          display: inline-flex;
           align-items: center;
-          margin-bottom: 20px;
+          justify-content: center;
+          background: #FFFFFF !important; /* Pure White box background as requested */
+          padding: 14px 22px;
+          border-radius: 12px;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+          margin-bottom: 24px;
+          width: fit-content;
         }
         .logo-img-footer {
-          height: 90px; /* Sized bigger for full readability */
+          height: 145px; /* Scaled to fit perfectly inside the box container */
           object-fit: contain;
-          filter: none; /* Simple presentation */
+          filter: none; /* Reverted to show original logo colors */
           transition: all var(--transition-normal);
         }
         
         .footer-tagline {
           font-style: italic;
-          font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.7);
-          margin-bottom: 16px;
-          line-height: 1.4;
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.85);
+          margin-bottom: 20px;
+          line-height: 1.5;
         }
         .footer-address {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.5);
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
           margin-bottom: 24px;
         }
         
@@ -150,13 +157,14 @@ export default function Footer() {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background-color: rgba(239, 68, 68, 0.08);
-          color: #F87171;
+          background-color: rgba(97, 97, 56, 0.12);
+          color: #D0D0AD;
           font-size: 0.75rem;
           font-weight: 700;
           padding: 6px 12px;
           border-radius: 4px;
-          border: 1px solid rgba(239, 68, 68, 0.2);
+          border: 1px solid rgba(97, 97, 56, 0.5);
+          box-shadow: 0 0 10px rgba(97, 97, 56, 0.25);
         }
         
         .footer-col-title {
@@ -176,7 +184,7 @@ export default function Footer() {
         }
         .footer-links a {
           text-decoration: none;
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.75);
           font-size: 0.9rem;
           transition: color var(--transition-fast);
         }
@@ -184,7 +192,7 @@ export default function Footer() {
           color: var(--color-accent);
         }
         .footer-career-link {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.75);
           font-size: 0.9rem;
           display: inline-flex;
           align-items: center;
@@ -192,7 +200,7 @@ export default function Footer() {
         }
         .hiring-badge {
           font-size: 0.65rem;
-          background-color: var(--color-accent-bg);
+          background-color: rgba(200, 154, 61, 0.15);
           color: var(--color-accent);
           padding: 2px 6px;
           border-radius: 4px;

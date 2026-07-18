@@ -34,6 +34,8 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
+  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=3' : '/logo_light.png?v=3';
+
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
@@ -41,7 +43,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         {/* Brand Image Logo Container */}
         <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
           <img 
-            src="/logo.png?v=3" 
+            src={logoSrc} 
             alt="MedRecovery Solutions, LLC Logo" 
             className="logo-img-branding" 
           />
@@ -85,10 +87,10 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-menu-header">
             <img 
-              src="/logo.png?v=3" 
+              src={logoSrc} 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
-              style={{ height: '60px' }}
+              style={{ height: '80px' }}
             />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
@@ -110,39 +112,45 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
 
       <style>{`
         .navbar {
-          position: fixed;
+          position: sticky;
           top: 0;
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 160px; /* Increased from 120px to comfortably fit the larger logo */
+          height: 80px;
           display: flex;
           align-items: center;
           transition: all var(--transition-normal);
-          background: transparent;
-          border-bottom: 1px solid transparent;
+          background: #FFFFFF !important; /* Solid background shelf to block scrolling text */
+          border-bottom: 1px solid var(--color-border) !important;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+          padding: 0;
         }
         .navbar.scrolled {
-          height: 125px; /* Increased from 95px */
-          background: rgba(250, 249, 251, 0.94);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid var(--color-border);
-          box-shadow: var(--shadow-sm);
+          height: 72px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+        .dark .navbar {
+          background: #0F0A1C !important;
+          border-color: rgba(255, 255, 255, 0.06) !important;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .dark .navbar.scrolled {
-          background: rgba(20, 14, 36, 0.94);
-          border-bottom: 1px solid var(--color-border);
+          background: #0F0A1C !important;
         }
         .nav-container {
           display: flex;
           align-items: center;
           justify-content: space-between;
           height: 100%;
-          gap: 16px;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+          overflow: visible; /* Prevent any logo clipping */
         }
         
-        /* Logo blending style to look native, not pasted */
+        /* Logo branding - Standard clean SaaS sizing, extremely sharp & legible */
         .logo-btn-box {
           background: none;
           border: none;
@@ -151,68 +159,84 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           display: flex;
           align-items: center;
           flex-shrink: 0;
+          overflow: visible;
         }
         .logo-img-branding {
-          height: 135px; /* Increased from 88px for full readability of logo and tagline */
+          height: 48px; /* Compact natural sizing matching Cedar/Headway */
+          width: auto;
           object-fit: contain;
+          overflow: visible;
           transition: all var(--transition-normal);
+          filter: contrast(1.18) saturate(1.12) brightness(0.96); /* Darkens gray text to optimize contrast */
+          animation: treeBloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes treeBloom {
+          0% {
+            transform: scale(0.7) translateY(4px);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
         }
         .navbar.scrolled .logo-img-branding {
-          height: 105px; /* Increased from 68px */
+          height: 40px;
         }
         .dark .logo-img-branding {
-          filter: none; /* Simple presentation */
+          filter: none;
         }
         
-        /* Prominent menu tab layout similar to older site but modern */
+        /* Modern minimal text links matching Headway/Cedar */
         .nav-links-desktop {
           display: flex;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          overflow: hidden;
-          background: linear-gradient(to bottom, #FCFCFC 0%, #EAEAEA 100%);
-          box-shadow: var(--shadow-sm);
-        }
-        .dark .nav-links-desktop {
-          background: linear-gradient(to bottom, #231B3E 0%, #150E2A 100%);
-          border-color: var(--color-border);
+          gap: 28px;
+          align-items: center;
         }
         .nav-link-btn {
           background: transparent;
           border: none;
-          border-right: 1px solid var(--color-border);
           cursor: pointer;
-          color: var(--text-primary);
+          color: var(--text-secondary);
           font-family: var(--font-sans);
-          font-weight: 700;
-          font-size: 0.82rem;
-          padding: 12px 16px;
-          transition: all var(--transition-fast);
+          font-weight: 500;
+          font-size: 0.94rem;
+          padding: 8px 0;
+          transition: color var(--transition-fast);
           text-transform: capitalize;
+          border-radius: 0;
+          position: relative;
         }
         .dark .nav-link-btn {
-          color: #EAE5F5;
-          border-right: 1px solid var(--color-border);
-        }
-        .nav-link-btn:last-child {
-          border-right: none;
+          color: rgba(255, 255, 255, 0.7);
         }
         .nav-link-btn:hover {
-          background-color: rgba(90, 55, 145, 0.08);
           color: var(--color-primary);
+          background-color: transparent !important;
         }
         .dark .nav-link-btn:hover {
-          background-color: rgba(255, 255, 255, 0.05);
-          color: var(--color-accent);
+          color: #FFFFFF;
+          background-color: transparent !important;
         }
         .nav-link-btn.active {
-          background: linear-gradient(to bottom, var(--color-primary) 0%, #462573 100%) !important;
-          color: #FFFFFF !important;
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+          background: transparent !important;
+          color: var(--color-primary) !important;
+          font-weight: 700;
+          box-shadow: none !important;
+        }
+        .nav-link-btn.active::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2.5px;
+          background-color: var(--color-primary);
+          border-radius: 4px;
         }
         .dark .nav-link-btn.active {
-          background: linear-gradient(to bottom, var(--color-primary) 0%, #462573 100%) !important;
-          color: #FFFFFF !important;
+          background: transparent !important;
+          color: var(--color-primary) !important;
         }
         
         .nav-actions {

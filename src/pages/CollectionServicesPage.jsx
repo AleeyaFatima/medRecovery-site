@@ -24,54 +24,42 @@ export default function CollectionServicesPage() {
       className="page-content"
     >
       <div className="page-header section-dark">
-        <div className="container">
-          <h1 className="page-title">Collection Services</h1>
-          <p className="page-desc">
-            Recovering outstanding medical accounts receivable cleanly, transparently, and with strict patient compliance.
-          </p>
-        </div>
-      </div>
+        <div className="container page-header-grid">
+          
+          <div className="header-img-box">
+            <img 
+              src="/collection_services_img.png" 
+              alt="Medical Collections and accounts receivable dashboard audit" 
+              className="header-img"
+              loading="lazy"
+            />
+            <div className="img-glow-shadow"></div>
+          </div>
 
-      {/* Main Collection Intro Block */}
-      <section className="section collections-feature-block">
-        <div className="container">
-          <div className="grid-2 collections-grid">
+          <div className="page-header-right">
+            <span className="section-tag">Contingency Collections</span>
+            <h1 className="page-title">Collection Services</h1>
+            <p className="page-desc">
+              Recovering outstanding medical accounts receivable cleanly, transparently, and with strict patient compliance.
+            </p>
+            <p className="page-desc-secondary">
+              We act as an extension of your practice's billing team, auditing denied claims, researching unapplied insurance credits, and appealing stale filings.
+            </p>
 
-            {/* Image */}
-            <div className="collections-img-container">
-              <img
-                src="/collection_services_img.png"
-                alt="Medical Collections and accounts receivable dashboard audit"
-                className="collections-img"
-              />
-              <div className="img-glow-shadow"></div>
-            </div>
-
-            <div className="collections-text">
-              <span className="section-tag">Contingency Collections</span>
-              <h2>No Recovery, No Fee. Guaranteed.</h2>
-              <p>
-                MedRecovery Solutions offers dedicated patient collections and insurance collection services on a pure contingency basis. We act as an extension of your practice's billing team, auditing denied claims, researching unapplied insurance credits, and appealing stale filings.
-              </p>
-              <p>
-                Our processes are built to ensure compliance with the Fair Debt Collection Practices Act (FDCPA) and state medical privacy regulations, safeguarding your clinical standing at all times.
-              </p>
-
-              <div className="collect-stats-strip">
-                <div className="c-stat-box">
-                  <span className="c-stat-num">+23.4%</span>
-                  <span className="c-stat-lbl">Average Collections Jump</span>
-                </div>
-                <div className="c-stat-box">
-                  <span className="c-stat-num">100%</span>
-                  <span className="c-stat-lbl">FDCPA & HIPAA Secure</span>
-                </div>
+            <div className="collect-stats-strip">
+              <div className="c-stat-box">
+                <span className="c-stat-num">+23.4%</span>
+                <span className="c-stat-lbl">Average Collections Jump</span>
+              </div>
+              <div className="c-stat-box">
+                <span className="c-stat-num">100%</span>
+                <span className="c-stat-lbl">FDCPA & HIPAA Secure</span>
               </div>
             </div>
-
           </div>
+
         </div>
-      </section>
+      </div>
 
       {/* Detailed Offerings Grid */}
       <section className="section offerings-section">
@@ -97,50 +85,47 @@ export default function CollectionServicesPage() {
 
       <style>{`
         .page-header {
-          padding-top: 60px;
-          padding-bottom: 60px;
+          padding-top: 100px;
+          padding-bottom: 70px;
           background: linear-gradient(135deg, var(--color-dark-section) 0%, var(--color-primary) 100%);
-          text-align: center;
+          text-align: left;
+        }
+        .page-header-grid {
+          display: grid;
+          grid-template-columns: 0.8fr 1.2fr;
+          gap: 60px;
+          align-items: center;
+        }
+        .page-header-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
         .page-title {
           font-size: clamp(2rem, 4vw, 3rem);
           color: #FFFFFF;
           margin-bottom: 16px;
+          line-height: 1.2;
+          font-family: var(--font-heading);
+          font-weight: 800;
         }
         .page-desc {
           font-size: 1.15rem;
-          color: rgba(255, 255, 255, 0.85);
-          max-width: 700px;
-          margin: 0 auto;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 12px;
+          line-height: 1.5;
         }
-        
-        .collections-feature-block {
-          background-color: transparent;
-          border-bottom: 1px solid var(--color-border);
-        }
-        .collections-grid {
-          align-items: center;
-          gap: 60px;
-        }
-        .collections-text {
-          text-align: left;
-        }
-        .collections-text h2 {
-          font-size: 2.2rem;
-          margin-top: 12px;
+        .page-desc-secondary {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.75);
           margin-bottom: 20px;
-        }
-        .collections-text p {
-          font-size: 1.05rem;
-          color: var(--text-secondary);
-          margin-bottom: 20px;
-          line-height: 1.6;
+          line-height: 1.5;
         }
         
         .collect-stats-strip {
           display: flex;
-          gap: 24px;
-          margin-top: 28px;
+          gap: 32px;
+          margin-top: 16px;
         }
         .c-stat-box {
           display: flex;
@@ -149,30 +134,29 @@ export default function CollectionServicesPage() {
         }
         .c-stat-num {
           font-family: var(--font-mono);
-          font-size: 1.8rem;
+          font-size: 2rem;
           font-weight: 700;
-          color: var(--color-primary);
+          color: var(--color-accent);
         }
         .c-stat-lbl {
           font-size: 0.8rem;
-          color: var(--text-muted);
-          font-weight: 500;
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: 600;
         }
         
-        .collections-img-container {
+        .header-img-box {
           position: relative;
           width: 100%;
-          max-width: 480px;
           aspect-ratio: 4/3;
           border-radius: var(--radius-md);
         }
-        .collections-img {
+        .header-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: var(--radius-md);
-          border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-md);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: var(--shadow-lg);
           position: relative;
           z-index: 2;
         }
@@ -184,7 +168,6 @@ export default function CollectionServicesPage() {
           opacity: 0.5;
         }
         
-        /* Offerings Section */
         .offerings-section {
           background-color: transparent;
         }
@@ -211,6 +194,7 @@ export default function CollectionServicesPage() {
         .offering-title {
           font-size: 1.15rem;
           margin-bottom: 12px;
+          color: var(--text-primary);
         }
         .offering-desc {
           font-size: 0.9rem;
@@ -219,14 +203,21 @@ export default function CollectionServicesPage() {
         }
 
         @media (max-width: 900px) {
-          .collections-grid {
+          .page-header-grid {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .collections-img-container {
+          .page-header-grid > :first-child {
+            order: 2;
+          }
+          .page-header {
+            padding-top: 200px;
+            padding-bottom: 60px;
+          }
+          .header-img-box {
             margin-left: auto;
             margin-right: auto;
-            order: 2;
+            max-width: 500px;
           }
         }
       `}</style>

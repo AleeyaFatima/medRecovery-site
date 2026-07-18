@@ -98,23 +98,22 @@ export default function Services() {
           align-items: flex-start;
           text-align: left;
         }
-        .service-icon-box {
-          width: 50px;
-          height: 50px;
-          border-radius: var(--radius-sm);
-          background-color: var(--color-accent-bg);
-          color: var(--color-accent);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 24px;
-          transition: all var(--transition-fast);
-        }
-        .service-card:hover .service-icon-box {
-          background-color: var(--color-primary);
-          color: #FFFFFF;
-          transform: scale(1.05);
-        }
+         .service-icon-box {
+           width: 56px;
+           height: 56px;
+           border-radius: 50% !important;
+           background-color: var(--color-accent-bg) !important;
+           color: var(--color-accent) !important;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-bottom: 24px;
+           transition: all var(--transition-fast);
+         }
+         .service-card:hover .service-icon-box {
+           transform: scale(1.08) translateY(-2px);
+           box-shadow: 0 4px 12px rgba(200, 154, 61, 0.15);
+         }
         .service-card-title {
           font-size: 1.25rem;
           margin-bottom: 12px;

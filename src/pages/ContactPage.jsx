@@ -29,9 +29,10 @@ export default function ContactPage() {
           
           <div className="header-img-box">
             <img 
-              src="/medical_team.png" 
-              alt="MedRecovery Solutions Customer Support Team" 
+              src="/contact_img.png" 
+              alt="MedRecovery Solutions Office Lobby Reception" 
               className="header-img"
+              loading="lazy"
             />
             <div className="img-glow-shadow"></div>
           </div>
@@ -42,8 +43,8 @@ export default function ContactPage() {
 
       <style>{`
         .page-header {
-          padding-top: 190px;
-          padding-bottom: 80px;
+          padding-top: 100px;
+          padding-bottom: 70px;
           background: linear-gradient(135deg, var(--color-dark-section) 0%, var(--color-primary) 100%);
           text-align: left;
         }
@@ -103,7 +104,7 @@ export default function ContactPage() {
             gap: 40px;
           }
           .page-header {
-            padding-top: 170px;
+            padding-top: 200px;
             padding-bottom: 60px;
           }
           .header-img-box {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, TrendingUp, DollarSign, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import ThreeDAnimation from './ThreeDAnimation';
 
 export default function Hero() {
   return (
@@ -53,54 +54,15 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
-          <div className="hero-image-wrapper">
-            <img 
-              src="/medical_team.png" 
-              alt="MedRecovery Solutions Collaborative Healthcare Team" 
-              className="hero-img"
-            />
-            <div className="hero-img-overlay"></div>
-
-            {/* Float Card 1: Clean Claim */}
-            <div className="floating-card c1 animate-float">
-              <div className="float-card-icon c-blue">
-                <ShieldCheck size={18} />
-              </div>
-              <div className="float-card-details">
-                <span className="float-card-label">Clean Claims</span>
-                <span className="float-card-value">98.7%</span>
-              </div>
-            </div>
-
-            {/* Float Card 2: Revenue Recovery Trend */}
-            <div className="floating-card c2 animate-float-delayed">
-              <div className="float-card-icon c-green">
-                <TrendingUp size={18} />
-              </div>
-              <div className="float-card-details">
-                <span className="float-card-label">Collections Rate</span>
-                <span className="float-card-value">+23.4%</span>
-              </div>
-            </div>
-
-            {/* Float Card 3: Recovered Dollars */}
-            <div className="floating-card c3 animate-float">
-              <div className="float-card-icon c-teal">
-                <DollarSign size={18} />
-              </div>
-              <div className="float-card-details">
-                <span className="float-card-label">Total Recovered</span>
-                <span className="float-card-value">$14.2M</span>
-              </div>
-            </div>
-          </div>
+          <ThreeDAnimation />
         </div>
       </div>
 
       <style>{`
         .hero-section {
-          padding-top: 140px;
-          min-height: 90vh;
+          padding-top: 60px;
+          padding-bottom: 60px;
+          min-height: calc(100vh - 80px); /* Fills screen height minus navbar height */
           display: flex;
           align-items: center;
           background: radial-gradient(circle at 10% 20%, rgba(0, 168, 169, 0.03) 0%, transparent 50%),

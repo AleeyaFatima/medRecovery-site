@@ -10,16 +10,10 @@ import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import { AnimatePresence } from 'framer-motion';
+import SEOManager from './components/SEOManager';
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return systemPrefersDark ? 'dark' : 'light';
-  });
+  const [theme, setTheme] = useState('light');
 
   const [currentPage, setCurrentPage] = useState('home');
 
@@ -62,6 +56,7 @@ function App() {
 
   return (
     <div className={`app-wrapper ${theme}`}>
+      <SEOManager currentPage={currentPage} />
       <Navbar 
         theme={theme} 
         toggleTheme={toggleTheme} 

@@ -57,6 +57,7 @@ export default function LeadershipPage() {
               src="/leadership_img.png" 
               alt="Diana Ward, CEO of MedRecovery Solutions" 
               className="header-img"
+              loading="lazy"
             />
             <div className="img-glow-shadow"></div>
           </div>
@@ -85,8 +86,8 @@ export default function LeadershipPage() {
 
       <style>{`
         .page-header {
-          padding-top: 190px;
-          padding-bottom: 80px;
+          padding-top: 100px;
+          padding-bottom: 70px;
           background: linear-gradient(135deg, var(--color-dark-section) 0%, var(--color-primary) 100%);
           text-align: left;
         }
@@ -211,7 +212,7 @@ export default function LeadershipPage() {
             gap: 40px;
           }
           .page-header {
-            padding-top: 170px;
+            padding-top: 200px;
             padding-bottom: 60px;
           }
           .header-img-box {

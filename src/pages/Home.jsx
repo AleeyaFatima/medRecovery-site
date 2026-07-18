@@ -104,11 +104,11 @@ export default function Home({ setCurrentPage }) {
           text-align: left;
         }
         .teaser-icon-box {
-          width: 44px;
-          height: 44px;
-          border-radius: var(--radius-sm);
-          background-color: var(--color-accent-bg);
-          color: var(--color-accent);
+          width: 56px;
+          height: 56px;
+          border-radius: 50% !important;
+          background-color: var(--color-accent-bg) !important;
+          color: var(--color-accent) !important;
           display: flex;
           align-items: center;
           justify-content: center;
