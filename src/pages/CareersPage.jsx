@@ -62,10 +62,10 @@ export default function CareersPage() {
 
           <div className="header-img-box">
             <img 
-              src="/careers_img.png" 
+              src="/careers_img.webp" 
               alt="MedRecovery Solutions workplace office environment" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>

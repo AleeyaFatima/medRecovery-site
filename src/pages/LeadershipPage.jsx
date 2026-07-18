@@ -54,10 +54,10 @@ export default function LeadershipPage() {
           
           <div className="header-img-box">
             <img 
-              src="/leadership_img.png" 
+              src="/leadership_img.webp" 
               alt="Diana Ward, CEO of MedRecovery Solutions" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>

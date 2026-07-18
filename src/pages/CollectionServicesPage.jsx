@@ -28,10 +28,10 @@ export default function CollectionServicesPage() {
           
           <div className="header-img-box">
             <img 
-              src="/collection_services_img.png" 
+              src="/collection_services_img.webp" 
               alt="Medical Collections and accounts receivable dashboard audit" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>

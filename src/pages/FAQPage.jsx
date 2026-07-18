@@ -55,7 +55,7 @@ export default function FAQPage() {
             {/* FAQ Page Illustration Image */}
             <div className="faq-block-img-box">
               <img 
-                src="/faq_img.png" 
+                src="/faq_img.webp" 
                 alt="MedRecovery Support Representative" 
                 className="faq-feature-img"
               />

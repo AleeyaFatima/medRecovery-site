@@ -45,10 +45,10 @@ export default function ServicesPage() {
           
           <div className="header-img-box">
             <img 
-              src="/services_img.png" 
+              src="/services_img.webp" 
               alt="Medical Billing Audits and Claims Verification" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>

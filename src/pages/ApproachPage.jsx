@@ -24,10 +24,10 @@ export default function ApproachPage() {
           
           <div className="header-img-box">
             <img 
-              src="/approach_img.png" 
+              src="/approach_img.webp" 
               alt="Healthcare Billing Management Team Meeting" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>

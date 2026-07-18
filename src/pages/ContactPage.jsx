@@ -29,10 +29,10 @@ export default function ContactPage() {
           
           <div className="header-img-box">
             <img 
-              src="/contact_img.png" 
+              src="/contact_img.webp" 
               alt="MedRecovery Solutions Office Lobby Reception" 
               className="header-img"
-              loading="lazy"
+              loading="eager"
             />
             <div className="img-glow-shadow"></div>
           </div>
