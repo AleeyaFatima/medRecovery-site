@@ -1,9 +1,8 @@
 import React from 'react';
-import { ShieldCheck, TrendingUp, DollarSign, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ShieldCheck, ArrowRight } from 'lucide-react';
 import ThreeDAnimation from './ThreeDAnimation';
 
-export default function Hero() {
+export default function Hero({ setCurrentPage }) {
   return (
     <header id="home" className="hero-section section">
       {/* Glow Effect */}
@@ -27,12 +26,12 @@ export default function Hero() {
           </p>
 
           <div className="hero-ctas">
-            <a href="#contact" className="btn btn-primary">
+            <button onClick={() => setCurrentPage && setCurrentPage('contact')} className="btn btn-primary" style={{ padding: '16px 36px', fontSize: '1.05rem', boxShadow: '0 20px 40px rgba(110, 63, 165, 0.25)' }}>
               Schedule Consultation <ArrowRight size={18} />
-            </a>
-            <a href="#services" className="btn btn-secondary">
-              See Services
-            </a>
+            </button>
+            <button onClick={() => setCurrentPage && setCurrentPage('contact')} className="btn btn-secondary" style={{ padding: '16px 36px', fontSize: '1.05rem' }}>
+              Get Free Assessment
+            </button>
           </div>
 
           <div className="hero-features">

@@ -27,6 +27,21 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    const pageBackgrounds = {
+      home: 'url(/home_bg.png)',
+      approach: 'url(/approach_bg.png)',
+      services: 'url(/services_bg.png)',
+      leadership: 'url(/leadership_bg.png)',
+      collections: 'url(/collections_bg.png)',
+      careers: 'url(/careers_bg.png)',
+      contact: 'url(/contact_bg.png)',
+      testimonials: 'url(/testimonials_bg.png)',
+    };
+    const bgUrl = pageBackgrounds[currentPage] || 'url(/clinic_bg.webp)';
+    document.documentElement.style.setProperty('--page-bg', bgUrl);
+  }, [currentPage]);
+
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };

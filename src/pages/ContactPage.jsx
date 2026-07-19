@@ -29,7 +29,7 @@ export default function ContactPage() {
           
           <div className="header-img-box">
             <img 
-              src="/contact_img.webp" 
+              src="/contact_img.png" 
               alt="MedRecovery Solutions Office Lobby Reception" 
               className="header-img"
               loading="eager"

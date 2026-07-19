@@ -90,7 +90,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
               src={logoSrc} 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
-              style={{ height: '80px' }}
+              style={{ width: '140px', height: 'auto' }}
             />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
@@ -117,26 +117,26 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 80px;
+          height: 140px;
           display: flex;
           align-items: center;
-          transition: all var(--transition-normal);
-          background: #FFFFFF !important; /* Solid background shelf to block scrolling text */
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          background: var(--bg-primary) !important; /* Solid background shelf to block scrolling text */
           border-bottom: 1px solid var(--color-border) !important;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
           padding: 0;
         }
         .navbar.scrolled {
-          height: 72px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+          height: 110px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
         }
         .dark .navbar {
-          background: #0F0A1C !important;
-          border-color: rgba(255, 255, 255, 0.06) !important;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          background: var(--bg-primary) !important;
+          border-color: var(--color-border) !important;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         .dark .navbar.scrolled {
-          background: #0F0A1C !important;
+          background: var(--bg-primary) !important;
         }
         .nav-container {
           display: flex;
@@ -144,29 +144,33 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           justify-content: space-between;
           height: 100%;
           width: 100%;
-          max-width: 1200px;
+          max-width: 100%;
           margin: 0 auto;
-          padding: 0 24px;
+          padding: 0 40px; /* 40px left and right padding */
           overflow: visible; /* Prevent any logo clipping */
+          position: relative; /* absolute alignment parent */
         }
         
-        /* Logo branding - Standard clean SaaS sizing, extremely sharp & legible */
+        /* Logo branding - Standard transparent layout in normal flow */
         .logo-btn-box {
-          background: none;
-          border: none;
+          background: none !important;
+          border: none !important;
           cursor: pointer;
           padding: 0;
           display: flex;
           align-items: center;
           flex-shrink: 0;
           overflow: visible;
+          box-shadow: none !important;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        
         .logo-img-branding {
-          height: 48px; /* Compact natural sizing matching Cedar/Headway */
-          width: auto;
+          width: 165px; /* Sized up to 165px wide to make the bottom subtext clearly visible and readable */
+          height: auto;
           object-fit: contain;
           overflow: visible;
-          transition: all var(--transition-normal);
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           filter: contrast(1.18) saturate(1.12) brightness(0.96); /* Darkens gray text to optimize contrast */
           animation: treeBloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
@@ -181,7 +185,8 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           }
         }
         .navbar.scrolled .logo-img-branding {
-          height: 40px;
+          width: 125px; /* Sticky header logo sized up to 125px wide */
+          height: auto;
         }
         .dark .logo-img-branding {
           filter: none;
@@ -190,52 +195,55 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         /* Modern minimal text links matching Headway/Cedar */
         .nav-links-desktop {
           display: flex;
-          gap: 28px;
+          gap: 6px; /* small spacing gap between pill buttons */
           align-items: center;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .nav-link-btn {
           background: transparent;
-          border: none;
+          border: 1.5px solid transparent;
           cursor: pointer;
           color: var(--text-secondary);
           font-family: var(--font-sans);
           font-weight: 500;
-          font-size: 0.94rem;
-          padding: 8px 0;
-          transition: color var(--transition-fast);
+          font-size: 14px; /* Reduced navigation font size */
+          padding: 8px 16px; /* Pill-button padding */
+          border-radius: 30px; /* Modern pill container style */
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           text-transform: capitalize;
-          border-radius: 0;
           position: relative;
+          white-space: nowrap; /* prevent wrapping onto multiple lines */
+        }
+        .navbar.scrolled .nav-link-btn {
+          font-size: 13px; /* 13px in the sticky header */
+          padding: 6px 12px;
         }
         .dark .nav-link-btn {
           color: rgba(255, 255, 255, 0.7);
         }
         .nav-link-btn:hover {
           color: var(--color-primary);
-          background-color: transparent !important;
+          background: rgba(110, 63, 165, 0.08) !important;
+          border-color: rgba(110, 63, 165, 0.12);
         }
         .dark .nav-link-btn:hover {
           color: #FFFFFF;
-          background-color: transparent !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+          border-color: rgba(255, 255, 255, 0.12);
         }
         .nav-link-btn.active {
-          background: transparent !important;
+          background: rgba(110, 63, 165, 0.12) !important;
+          border-color: var(--color-primary) !important;
           color: var(--color-primary) !important;
-          font-weight: 700;
+          font-weight: 600;
           box-shadow: none !important;
         }
-        .nav-link-btn.active::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 2.5px;
-          background-color: var(--color-primary);
-          border-radius: 4px;
-        }
         .dark .nav-link-btn.active {
-          background: transparent !important;
+          background: rgba(192, 132, 252, 0.15) !important;
+          border-color: var(--color-primary) !important;
           color: var(--color-primary) !important;
         }
         
@@ -347,6 +355,30 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
             background-color: var(--bg-surface-hover);
             color: var(--text-primary);
             padding: 8px;
+          }
+          .logo-img-branding {
+            width: 120px !important;
+          }
+          .navbar {
+            height: 100px;
+          }
+          .navbar.scrolled {
+            height: 80px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .nav-container {
+            padding: 0 16px;
+          }
+          .logo-img-branding {
+            width: 95px !important;
+          }
+          .navbar {
+            height: 80px;
+          }
+          .navbar.scrolled {
+            height: 72px;
           }
         }
       `}</style>

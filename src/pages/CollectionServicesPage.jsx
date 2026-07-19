@@ -28,7 +28,7 @@ export default function CollectionServicesPage() {
           
           <div className="header-img-box">
             <img 
-              src="/collection_services_img.webp" 
+              src="/collection_services_img.png" 
               alt="Medical Collections and accounts receivable dashboard audit" 
               className="header-img"
               loading="eager"

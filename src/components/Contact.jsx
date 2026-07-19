@@ -355,7 +355,7 @@ export default function Contact() {
         .form-group input, .form-group textarea {
           font-family: var(--font-sans);
           font-size: 0.95rem;
-          padding: 12px 16px;
+          padding: 14px 18px;
           border-radius: var(--radius-sm);
           border: 1px solid var(--color-border);
           background-color: var(--bg-primary);
@@ -364,9 +364,13 @@ export default function Contact() {
         }
         .form-group input:focus, .form-group textarea:focus {
           outline: none;
-          border-color: var(--color-accent);
+          border-color: var(--color-primary);
           background-color: var(--bg-surface);
-          box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+          box-shadow: 0 0 0 4px rgba(110, 63, 165, 0.12);
+        }
+        .dark .form-group input:focus, .dark .form-group textarea:focus {
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
         }
         .form-submit-btn {
           width: 100%;

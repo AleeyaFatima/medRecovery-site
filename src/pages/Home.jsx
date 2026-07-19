@@ -43,7 +43,7 @@ export default function Home({ setCurrentPage }) {
       exit="exit"
       className="page-content"
     >
-      <Hero />
+      <Hero setCurrentPage={setCurrentPage} />
       <TrustStrip />
 
       {/* Overview Teaser Section */}

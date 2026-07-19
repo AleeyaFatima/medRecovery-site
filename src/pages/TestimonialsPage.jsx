@@ -53,7 +53,7 @@ export default function TestimonialsPage() {
           
           <div className="header-img-box">
             <img 
-              src="/testimonials_img.webp" 
+              src="/testimonials_img.png" 
               alt="Smiling physician representing clinical success" 
               className="header-img"
               loading="eager"

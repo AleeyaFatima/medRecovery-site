@@ -45,7 +45,7 @@ export default function ServicesPage() {
           
           <div className="header-img-box">
             <img 
-              src="/services_img.webp" 
+              src="/services_img.png" 
               alt="Medical Billing Audits and Claims Verification" 
               className="header-img"
               loading="eager"

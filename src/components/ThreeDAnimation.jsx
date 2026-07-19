@@ -24,8 +24,8 @@ export default function ThreeDAnimation() {
           <div className="face face-top" />
         </div>
         
-        {/* Bar 3 - Teal (Clean Claims) */}
-        <div className="bar-3d bar-3d-3 teal-bar">
+        {/* Bar 3 - Violet/Indigo (Clean Claims) */}
+        <div className="bar-3d bar-3d-3 violet-bar">
           <div className="face face-front" />
           <div className="face face-back" />
           <div className="face face-left" />
