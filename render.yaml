@@ -5,6 +5,19 @@ services:
     buildCommand: npm run build
     publishPath: dist
     headers:
-      - path: /*
+      - path: /assets/*
         name: Cache-Control
         value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /robots.txt
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /sitemap.xml
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

@@ -9,13 +9,62 @@ import CollectionServicesPage from './pages/CollectionServicesPage';
 import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
 import TestimonialsPage from './pages/TestimonialsPage';
+import AboutPage from './pages/AboutPage';
+import FAQPage from './pages/FAQPage';
 import { AnimatePresence } from 'framer-motion';
 import SEOManager from './components/SEOManager';
 
+const getInitialPage = () => {
+  if (typeof window === 'undefined') return 'home';
+  const path = window.location.pathname.replace(/^\/|\/$/g, '');
+  const pathMap = {
+    '': 'home',
+    'home': 'home',
+    'approach': 'approach',
+    'services': 'services',
+    'leadership': 'leadership',
+    'collections': 'collections',
+    'collection-services': 'collections',
+    'careers': 'careers',
+    'contact': 'contact',
+    'testimonials': 'testimonials',
+    'about': 'about',
+    'faq': 'faq'
+  };
+  return pathMap[path] || 'home';
+};
+
 function App() {
   const [theme, setTheme] = useState('light');
+  const [currentPage, setCurrentPageState] = useState(getInitialPage());
 
-  const [currentPage, setCurrentPage] = useState('home');
+  const setCurrentPage = (page) => {
+    setCurrentPageState(page);
+    const pathMap = {
+      home: '/',
+      approach: '/approach',
+      services: '/services',
+      leadership: '/leadership',
+      collections: '/collection-services',
+      careers: '/careers',
+      contact: '/contact',
+      testimonials: '/testimonials',
+      about: '/about',
+      faq: '/faq'
+    };
+    const path = pathMap[page] || '/';
+    if (window.location.pathname !== path) {
+      window.history.pushState({ page }, '', path);
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPageState(getInitialPage());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -37,6 +86,8 @@ function App() {
       careers: 'url(/careers_bg.png)',
       contact: 'url(/contact_bg.png)',
       testimonials: 'url(/testimonials_bg.png)',
+      about: 'url(/approach_bg.png)',
+      faq: 'url(/testimonials_bg.png)'
     };
     const bgUrl = pageBackgrounds[currentPage] || 'url(/clinic_bg.webp)';
     document.documentElement.style.setProperty('--page-bg', bgUrl);
@@ -64,6 +115,10 @@ function App() {
         return <ContactPage key="contact" />;
       case 'testimonials':
         return <TestimonialsPage key="testimonials" />;
+      case 'about':
+        return <AboutPage key="about" />;
+      case 'faq':
+        return <FAQPage key="faq" />;
       default:
         return <Home key="home" setCurrentPage={setCurrentPage} />;
     }
@@ -83,7 +138,7 @@ function App() {
           {renderPage()}
         </AnimatePresence>
       </main>
-      <Footer />
+      <Footer setCurrentPage={setCurrentPage} />
     </div>
   );
 }

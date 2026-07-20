@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShieldAlert, ArrowUp } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ setCurrentPage }) {
   const currentYear = new Date().getFullYear();
 
   const handleScrollTop = () => {
@@ -62,11 +62,11 @@ export default function Footer() {
           <div className="footer-column">
             <h4 className="footer-col-title">Services</h4>
             <ul className="footer-links">
-              <li><a href="#services">Medical Billing</a></li>
-              <li><a href="#services">Revenue Cycle</a></li>
-              <li><a href="#services">Medical Coding</a></li>
-              <li><a href="#services">Patient Collections</a></li>
-              <li><a href="#services">Payer Credentialing</a></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Medical Billing</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Revenue Cycle</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Medical Coding</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('collections')} className="footer-nav-btn">Patient Collections</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Payer Credentialing</button></li>
             </ul>
           </div>
 
@@ -74,10 +74,10 @@ export default function Footer() {
           <div className="footer-column">
             <h4 className="footer-col-title">Company</h4>
             <ul className="footer-links">
-              <li><a href="#approach">Our Approach</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#faq">FAQs</a></li>
-              <li><span className="footer-career-link">Careers <span className="hiring-badge">Hiring</span></span></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('approach')} className="footer-nav-btn">Our Approach</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('about')} className="footer-nav-btn">About Us</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('faq')} className="footer-nav-btn">FAQs</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('careers')} className="footer-nav-btn">Careers <span className="hiring-badge">Hiring</span></button></li>
             </ul>
           </div>
 
@@ -255,6 +255,23 @@ export default function Footer() {
           padding: 2px 6px;
           border-radius: 4px;
           font-weight: 700;
+        }
+        
+        .footer-nav-btn {
+          background: none;
+          border: none;
+          padding: 0;
+          color: rgba(255, 255, 255, 0.6);
+          font-family: var(--font-sans);
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          text-align: left;
+          transition: color var(--transition-fast);
+          display: inline-block;
+        }
+        .footer-nav-btn:hover {
+          color: var(--color-accent);
         }
         
         .contact-info-links {
