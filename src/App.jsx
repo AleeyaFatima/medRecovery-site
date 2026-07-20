@@ -11,9 +11,22 @@ import ContactPage from './pages/ContactPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
+import CredentialingPage from './pages/CredentialingPage';
+import CodingPage from './pages/CodingPage';
+import DenialPage from './pages/DenialPage';
+import ARRecoveryPage from './pages/ARRecoveryPage';
+import EligibilityPage from './pages/EligibilityPage';
+import VirtualAssistantPage from './pages/VirtualAssistantPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
+import HIPAAPage from './pages/HIPAAPage';
+import NotFoundPage from './pages/NotFoundPage';
+import BlogPage from './pages/BlogPage';
 import { AnimatePresence } from 'framer-motion';
 import SEOManager from './components/SEOManager';
 import ParallaxParticles from './components/ParallaxParticles';
+import LiveChat from './components/LiveChat';
+import CookieConsent from './components/CookieConsent';
 
 const getInitialPage = () => {
   if (typeof window === 'undefined') return 'home';
@@ -30,9 +43,23 @@ const getInitialPage = () => {
     'contact': 'contact',
     'testimonials': 'testimonials',
     'about': 'about',
-    'faq': 'faq'
+    'faq': 'faq',
+    'credentialing': 'credentialing',
+    'medical-coding': 'coding',
+    'denial-management': 'denial',
+    'ar-recovery': 'ar-recovery',
+    'eligibility-verification': 'eligibility',
+    'prior-authorization': 'eligibility',
+    'virtual-medical-assistant': 'virtual-assistant',
+    'privacy-policy': 'privacy',
+    'terms-of-service': 'terms',
+    'hipaa-compliance': 'hipaa',
+    'blog': 'blog'
   };
-  return pathMap[path] || 'home';
+  const page = pathMap[path];
+  if (page) return page;
+  if (path !== '') return 'not-found';
+  return 'home';
 };
 
 function App() {
@@ -51,7 +78,18 @@ function App() {
       contact: '/contact',
       testimonials: '/testimonials',
       about: '/about',
-      faq: '/faq'
+      faq: '/faq',
+      credentialing: '/credentialing',
+      coding: '/medical-coding',
+      denial: '/denial-management',
+      'ar-recovery': '/ar-recovery',
+      eligibility: '/eligibility-verification',
+      'virtual-assistant': '/virtual-medical-assistant',
+      privacy: '/privacy-policy',
+      terms: '/terms-of-service',
+      hipaa: '/hipaa-compliance',
+      blog: '/blog',
+      'not-found': '/not-found'
     };
     const path = pathMap[page] || '/';
     if (window.location.pathname !== path) {
@@ -88,7 +126,17 @@ function App() {
       contact: 'url(/contact_bg.png)',
       testimonials: 'url(/testimonials_bg.png)',
       about: 'url(/approach_bg.png)',
-      faq: 'url(/testimonials_bg.png)'
+      faq: 'url(/testimonials_bg.png)',
+      credentialing: 'url(/services_bg.png)',
+      coding: 'url(/services_bg.png)',
+      denial: 'url(/services_bg.png)',
+      'ar-recovery': 'url(/collections_bg.png)',
+      eligibility: 'url(/services_bg.png)',
+      'virtual-assistant': 'url(/careers_bg.png)',
+      privacy: 'url(/approach_bg.png)',
+      terms: 'url(/approach_bg.png)',
+      hipaa: 'url(/approach_bg.png)',
+      blog: 'url(/testimonials_bg.png)'
     };
     const bgUrl = pageBackgrounds[currentPage] || 'url(/clinic_bg.webp)';
     document.documentElement.style.setProperty('--page-bg', bgUrl);
@@ -120,6 +168,28 @@ function App() {
         return <AboutPage key="about" />;
       case 'faq':
         return <FAQPage key="faq" />;
+      case 'credentialing':
+        return <CredentialingPage key="credentialing" />;
+      case 'coding':
+        return <CodingPage key="coding" />;
+      case 'denial':
+        return <DenialPage key="denial" />;
+      case 'ar-recovery':
+        return <ARRecoveryPage key="ar-recovery" />;
+      case 'eligibility':
+        return <EligibilityPage key="eligibility" />;
+      case 'virtual-assistant':
+        return <VirtualAssistantPage key="virtual-assistant" />;
+      case 'privacy':
+        return <PrivacyPage key="privacy" />;
+      case 'terms':
+        return <TermsPage key="terms" />;
+      case 'hipaa':
+        return <HIPAAPage key="hipaa" />;
+      case 'blog':
+        return <BlogPage key="blog" />;
+      case 'not-found':
+        return <NotFoundPage key="not-found" setCurrentPage={setCurrentPage} />;
       default:
         return <Home key="home" setCurrentPage={setCurrentPage} />;
     }
@@ -141,6 +211,8 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer setCurrentPage={setCurrentPage} />
+      <LiveChat setCurrentPage={setCurrentPage} />
+      <CookieConsent setCurrentPage={setCurrentPage} />
     </div>
   );
 }

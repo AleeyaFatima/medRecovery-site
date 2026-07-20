@@ -1,6 +1,8 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import TrustStrip from '../components/TrustStrip';
+import ROICalculator from '../components/ROICalculator';
+import RevenueCompare from '../components/RevenueCompare';
 import { FileText, Layers, HeartHandshake, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -78,6 +80,34 @@ export default function Home({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* Interactive ROI Calculator Section */}
+      <section className="section roi-calculator-section">
+        <div className="container">
+          <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+            <span className="section-tag">Interactive Calculator</span>
+            <h2 className="section-title">Estimate Your Potential Revenue Recovery</h2>
+            <p className="section-subtitle" style={{ maxWidth: '650px', margin: '0 auto' }}>
+              Select your clinical specialty and current monthly billing volume to estimate leakage points and calculate your potential recovery.
+            </p>
+          </div>
+          <ROICalculator />
+        </div>
+      </section>
+
+      {/* Operational Comparison Section */}
+      <section className="section revenue-compare-section">
+        <div className="container">
+          <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+            <span className="section-tag">Comparison Guide</span>
+            <h2 className="section-title">In-House Billing vs. MedRecovery Solutions</h2>
+            <p className="section-subtitle" style={{ maxWidth: '650px', margin: '0 auto' }}>
+              See how outsourcing your billing operations to our certified team helps eliminate overhead and minimize collection delays.
+            </p>
+          </div>
+          <RevenueCompare />
+        </div>
+      </section>
+
       {/* Info Banner Section */}
       <section className="section-dark banner-section">
         <div className="container banner-container">
@@ -117,6 +147,9 @@ export default function Home({ setCurrentPage }) {
         .teaser-title {
           font-size: 1.15rem;
           margin-bottom: 8px;
+          font-family: var(--font-heading);
+          font-weight: 700;
+          color: var(--text-primary);
         }
         .teaser-desc {
           font-size: 0.9rem;
@@ -136,6 +169,17 @@ export default function Home({ setCurrentPage }) {
         }
         .teaser-btn:hover {
           color: var(--color-accent);
+        }
+        
+        .roi-calculator-section {
+          background-color: var(--bg-surface);
+          border-top: 1px solid var(--color-border);
+          border-bottom: 1px solid var(--color-border);
+          padding: 80px 0;
+        }
+        .revenue-compare-section {
+          background-color: transparent;
+          padding: 80px 0;
         }
         
         .center-cta-box {

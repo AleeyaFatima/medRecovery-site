@@ -12,6 +12,25 @@ export default function Footer({ setCurrentPage }) {
     <footer className="footer section section-dark">
       <div className="container">
         
+        {/* Newsletter Inline Banner */}
+        <div className="footer-newsletter-banner">
+          <div className="newsletter-text">
+            <h3>Subscribe to RCM Insights</h3>
+            <p>Stay updated with certified billing recommendations, HIPAA compliance guidelines, and payer strategies.</p>
+          </div>
+          <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for subscribing to RCM Insights.'); }}>
+            <input 
+              type="email" 
+              placeholder="Practice email address" 
+              required 
+              className="newsletter-input"
+            />
+            <button type="submit" className="btn btn-primary newsletter-submit-btn">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
         {/* Main Footer Content */}
         <div className="footer-grid">
           
@@ -52,9 +71,17 @@ export default function Footer({ setCurrentPage }) {
                 </svg>
               </a>
             </div>
-            <div className="compliance-badge">
-              <ShieldAlert size={14} className="badge-icon" />
-              <span>HIPAA Secure Certified</span>
+            
+            {/* Accreditation Badges */}
+            <div className="footer-badges-container">
+              <div className="compliance-badge">
+                <ShieldAlert size={14} className="badge-icon" />
+                <span>HIPAA Secure</span>
+              </div>
+              <div className="compliance-badge aapc-badge">
+                <span className="badge-text-bold">AAPC</span>
+                <span>Certified Coding</span>
+              </div>
             </div>
           </div>
 
@@ -63,10 +90,10 @@ export default function Footer({ setCurrentPage }) {
             <h4 className="footer-col-title">Services</h4>
             <ul className="footer-links">
               <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Medical Billing</button></li>
-              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Revenue Cycle</button></li>
-              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Medical Coding</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('coding')} className="footer-nav-btn">Medical Coding</button></li>
               <li><button onClick={() => setCurrentPage && setCurrentPage('collections')} className="footer-nav-btn">Patient Collections</button></li>
-              <li><button onClick={() => setCurrentPage && setCurrentPage('services')} className="footer-nav-btn">Payer Credentialing</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('credentialing')} className="footer-nav-btn">Payer Credentialing</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('denial')} className="footer-nav-btn">Denial Management</button></li>
             </ul>
           </div>
 
@@ -85,10 +112,9 @@ export default function Footer({ setCurrentPage }) {
           <div className="footer-column">
             <h4 className="footer-col-title">Resources</h4>
             <ul className="footer-links">
-              <li><a href="#">Billing Insights</a></li>
-              <li><a href="#">HIPAA Compliance</a></li>
-              <li><a href="#">Claims Checklist</a></li>
-              <li><a href="#">Practice Blog</a></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('blog')} className="footer-nav-btn">Billing Insights</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('hipaa')} className="footer-nav-btn">HIPAA Compliance</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('blog')} className="footer-nav-btn">Practice Blog</button></li>
             </ul>
           </div>
 
@@ -96,10 +122,9 @@ export default function Footer({ setCurrentPage }) {
           <div className="footer-column">
             <h4 className="footer-col-title">Legal</h4>
             <ul className="footer-links">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">BAA Agreement</a></li>
-              <li><a href="#">Compliance Statement</a></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('privacy')} className="footer-nav-btn">Privacy Policy</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('terms')} className="footer-nav-btn">Terms of Service</button></li>
+              <li><button onClick={() => setCurrentPage && setCurrentPage('hipaa')} className="footer-nav-btn">Compliance Statement</button></li>
             </ul>
           </div>
 
@@ -332,6 +357,89 @@ export default function Footer({ setCurrentPage }) {
             gap: 40px;
           }
         }
+        /* Newsletter Banner Styles */
+        .footer-newsletter-banner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 16px;
+          padding: 24px 32px;
+          margin-bottom: 40px;
+          gap: 24px;
+          text-align: left;
+        }
+        .newsletter-text h3 {
+          font-family: var(--font-heading);
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          margin-bottom: 6px;
+        }
+        .newsletter-text p {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin: 0;
+        }
+        .newsletter-form {
+          display: flex;
+          gap: 12px;
+          flex-shrink: 0;
+          width: 100%;
+          max-width: 420px;
+        }
+        .newsletter-input {
+          flex: 1;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 30px;
+          padding: 10px 18px;
+          color: #FFFFFF;
+          font-size: 0.85rem;
+          outline: none;
+        }
+        .newsletter-submit-btn {
+          padding: 10px 24px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          flex-shrink: 0;
+        }
+        
+        /* Accreditations Row */
+        .footer-badges-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 20px;
+        }
+        .aapc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .badge-text-bold {
+          font-weight: 850;
+          color: var(--color-accent);
+          font-size: 0.68rem;
+          letter-spacing: 0.5px;
+          background: rgba(192, 132, 252, 0.1);
+          padding: 2px 6px;
+          border-radius: 4px;
+          border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+
+        @media (max-width: 900px) {
+          .footer-newsletter-banner {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 24px;
+          }
+          .newsletter-form {
+            max-width: 100%;
+          }
+        }
+
         @media (max-width: 768px) {
           .footer-grid {
             grid-template-columns: repeat(2, 1fr);

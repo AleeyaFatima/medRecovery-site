@@ -207,6 +207,123 @@ export default function SEOManager({ currentPage }) {
             }
           ]
         }
+      },
+      about: {
+        title: "About Us | Healthcare Billing & Collections Auditing Specialists",
+        description: "Over ten years of medical billing and accounts receivable recovery experience. Licensed in 50 states, HIPAA certified, and dedicated to physician clinical collections.",
+        url: "https://medrecoverysolutions.com/about",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org, schemas.local]
+        }
+      },
+      faq: {
+        title: "Frequently Asked Questions | RCM & HIPAA Auditing Solutions",
+        description: "Clear answers regarding billing overhead contingency rates, CAQH credentialing timelines, and EHR migration compliance.",
+        url: "https://medrecoverysolutions.com/faq",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      credentialing: {
+        title: "Payer Credentialing & Enrollment Management | MedRecovery Solutions",
+        description: "Complete CAQH profile maintenance, enrollment packets submission, and Medicare/commercial contract management.",
+        url: "https://medrecoverysolutions.com/credentialing",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      coding: {
+        title: "AAPC Certified Medical Coding Audits | CPT & ICD-10 Solutions",
+        description: "Certified Professional Coders (CPC) conducting code audits and modifier mappings to minimize downcoding and billing errors.",
+        url: "https://medrecoverysolutions.com/medical-coding",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      denial: {
+        title: "Denial Management & Appeal Appeal Workflows | MedRecovery Solutions",
+        description: "Recover denied claims through rapid audits, documentation attachment, and official payer appeal submissions.",
+        url: "https://medrecoverysolutions.com/denial-management",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      'ar-recovery': {
+        title: "Accounts Receivable (A/R) Recovery Services | MedRecovery Solutions",
+        description: "Audit and reclaim outstanding 90+ day payer balances. Shorten average days in A/R down to 12.4 days.",
+        url: "https://medrecoverysolutions.com/ar-recovery",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      eligibility: {
+        title: "Eligibility Verification & Prior Authorization Solutions",
+        description: "Automate coverage checks and deductibles logging. Proactive clinical documentation submissions to avoid front desk rejections.",
+        url: "https://medrecoverysolutions.com/eligibility-verification",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      'virtual-assistant': {
+        title: "HIPAA Secure Virtual Medical Assistants | Practice Support",
+        description: "Reduce documentation burden. Certified assistants coordinating patient intakes, portal responses, and transcribing charts.",
+        url: "https://medrecoverysolutions.com/virtual-medical-assistant",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      privacy: {
+        title: "Privacy Policy | HIPAA Compliance Disclosures",
+        description: "Our privacy policies, Business Associate Agreements guidelines, and secure AWS AES-256 cloud encryption protocols.",
+        url: "https://medrecoverysolutions.com/privacy-policy",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      terms: {
+        title: "Terms of Service | MedRecovery Solutions LLC",
+        description: "Terms governing use of the MedRecovery site and secure billing dashboards.",
+        url: "https://medrecoverysolutions.com/terms-of-service",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      hipaa: {
+        title: "HIPAA & Data Security Safeguards Profile | MedRecovery Solutions",
+        description: "Technical, physical, and administrative safeguards protecting electronic PHI and AWS clinical databases.",
+        url: "https://medrecoverysolutions.com/hipaa-compliance",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      blog: {
+        title: "Latest Healthcare RCM Insights & Billing Blog | MedRecovery Solutions",
+        description: "Billing guidelines, certified coding updates, and HIPAA compliance tips curated by healthcare experts.",
+        url: "https://medrecoverysolutions.com/blog",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
+      },
+      'not-found': {
+        title: "404 Page Not Found | MedRecovery Solutions",
+        description: "The clinical resource you requested is unavailable.",
+        url: "https://medrecoverysolutions.com/404",
+        schema: {
+          "@context": "https://schema.org",
+          "@graph": [schemas.org]
+        }
       }
     };
 

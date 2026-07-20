@@ -4,6 +4,7 @@ import { Sun, Moon, Menu, X } from 'lucide-react';
 export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,15 +23,27 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
     { name: 'Unique Approach', value: 'approach' },
     { name: 'Services', value: 'services' },
     { name: 'Leadership', value: 'leadership' },
-    { name: 'Collection Services', value: 'collections' },
     { name: 'Careers', value: 'careers' },
+    { name: 'Blog', value: 'blog' },
     { name: 'Contact Us/Get Started', value: 'contact' },
-    { name: 'Testimonials', value: 'testimonials' },
+  ];
+
+  const serviceSubLinks = [
+    { name: 'Overview', value: 'services' },
+    { name: 'Medical Billing Solutions', value: 'services' },
+    { name: 'Medical Collections', value: 'collections' },
+    { name: 'Payer Credentialing', value: 'credentialing' },
+    { name: 'Certified Medical Coding', value: 'coding' },
+    { name: 'Denial Management & Appeals', value: 'denial' },
+    { name: 'Accounts Receivable Recovery', value: 'ar-recovery' },
+    { name: 'Eligibility & Prior Auth', value: 'eligibility' },
+    { name: 'Virtual Medical Assistant', value: 'virtual-assistant' }
   ];
 
   const handleNavClick = (value) => {
     setCurrentPage(value);
     setIsOpen(false);
+    setServicesExpanded(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -51,15 +64,41 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
 
         {/* Desktop Navigation Link Tabs (Prominent tab-bar styling) */}
         <div className="nav-links-desktop">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => handleNavClick(link.value)}
-              className={`nav-link-btn ${currentPage === link.value ? 'active' : ''}`}
-            >
-              {link.name}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            if (link.value === 'services') {
+              const isServiceActive = currentPage === 'services' || serviceSubLinks.some(s => currentPage === s.value);
+              return (
+                <div key={link.name} className="nav-dropdown-wrapper">
+                  <button
+                    className={`nav-link-btn ${isServiceActive ? 'active' : ''}`}
+                    onClick={() => handleNavClick('services')}
+                  >
+                    {link.name}
+                  </button>
+                  <div className="nav-dropdown-content">
+                    {serviceSubLinks.slice(1).map((sub) => (
+                      <button
+                        key={sub.name}
+                        onClick={() => handleNavClick(sub.value)}
+                        className={`dropdown-item-btn ${currentPage === sub.value ? 'active-item' : ''}`}
+                      >
+                        {sub.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <button
+                key={link.name}
+                onClick={() => handleNavClick(link.value)}
+                className={`nav-link-btn ${currentPage === link.value ? 'active' : ''}`}
+              >
+                {link.name}
+              </button>
+            );
+          })}
         </div>
 
         {/* Right Actions */}
@@ -97,15 +136,42 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
             </button>
           </div>
           <div className="mobile-links">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                className={`mobile-link-btn ${currentPage === link.value ? 'active' : ''}`}
-                onClick={() => handleNavClick(link.value)}
-              >
-                {link.name}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              if (link.value === 'services') {
+                const isServiceActive = currentPage === 'services' || serviceSubLinks.some(s => currentPage === s.value);
+                return (
+                  <div key={link.name} className="mobile-accordion-wrapper">
+                    <button
+                      className={`mobile-link-btn accordion-trigger ${isServiceActive ? 'active' : ''}`}
+                      onClick={() => setServicesExpanded(!servicesExpanded)}
+                    >
+                      <span>{link.name}</span>
+                      <span className={`arrow-indicator ${servicesExpanded ? 'expanded' : ''}`}>▼</span>
+                    </button>
+                    <div className={`mobile-accordion-content ${servicesExpanded ? 'open' : ''}`}>
+                      {serviceSubLinks.map((sub) => (
+                        <button
+                          key={sub.name}
+                          className={`mobile-sublink-btn ${currentPage === sub.value ? 'active' : ''}`}
+                          onClick={() => handleNavClick(sub.value)}
+                        >
+                          {sub.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <button
+                  key={link.name}
+                  className={`mobile-link-btn ${currentPage === link.value ? 'active' : ''}`}
+                  onClick={() => handleNavClick(link.value)}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -380,6 +446,130 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           .navbar.scrolled {
             height: 72px;
           }
+        }
+        /* Desktop Dropdown menu */
+        .nav-dropdown-wrapper {
+          position: relative;
+          display: inline-block;
+        }
+        .nav-dropdown-content {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(10px);
+          min-width: 240px;
+          background: rgba(10, 7, 20, 0.95);
+          backdrop-filter: blur(25px);
+          -webkit-backdrop-filter: blur(25px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 8px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+        }
+        .light .nav-dropdown-content {
+          background: rgba(255, 255, 255, 0.98);
+          border-color: rgba(0, 0, 0, 0.06);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .nav-dropdown-wrapper:hover .nav-dropdown-content {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          animation: dropdownFadeIn 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes dropdownFadeIn {
+          from { opacity: 0; transform: translateX(-50%) translateY(15px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(8px); }
+        }
+        .dropdown-item-btn {
+          width: 100%;
+          background: transparent;
+          border: none;
+          text-align: left;
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-family: var(--font-sans);
+          font-size: 0.82rem;
+          font-weight: 550;
+          color: var(--text-secondary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .dropdown-item-btn:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--color-accent);
+          padding-left: 20px;
+        }
+        .light .dropdown-item-btn:hover {
+          background: rgba(0, 0, 0, 0.03);
+        }
+        .dropdown-item-btn.active-item {
+          color: var(--color-accent);
+          background: rgba(192, 132, 252, 0.08);
+        }
+
+        /* Mobile Accordion Menu */
+        .mobile-accordion-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .accordion-trigger {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+        .arrow-indicator {
+          font-size: 0.65rem;
+          transition: transform 0.2s ease;
+          color: var(--text-muted);
+        }
+        .arrow-indicator.expanded {
+          transform: rotate(180deg);
+          color: var(--color-accent);
+        }
+        .mobile-accordion-content {
+          display: none;
+          flex-direction: column;
+          gap: 4px;
+          padding-left: 16px;
+          border-left: 1px solid rgba(255, 255, 255, 0.05);
+          margin: 6px 0 6px 8px;
+        }
+        .light .mobile-accordion-content {
+          border-left-color: rgba(0, 0, 0, 0.05);
+        }
+        .mobile-accordion-content.open {
+          display: flex;
+        }
+        .mobile-sublink-btn {
+          background: transparent;
+          border: none;
+          text-align: left;
+          padding: 8px 12px;
+          font-family: var(--font-sans);
+          font-size: 0.82rem;
+          font-weight: 550;
+          color: var(--text-secondary);
+          cursor: pointer;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          border-bottom: none !important;
+        }
+        .mobile-sublink-btn:hover {
+          color: var(--color-accent);
+          background: rgba(255, 255, 255, 0.03);
+        }
+        .light .mobile-sublink-btn:hover {
+          background: rgba(0, 0, 0, 0.02);
+        }
+        .mobile-sublink-btn.active {
+          color: var(--color-accent);
+          background: rgba(192, 132, 252, 0.06);
         }
       `}</style>
     </nav>
