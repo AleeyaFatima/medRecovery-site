@@ -224,11 +224,11 @@ export default function ThreeDAnimation() {
           padding: 24px;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25),
                       inset 0 1px 0 rgba(255, 255, 255, 0.05);
-          transform: rotateX(8deg) rotateY(-8deg) rotateZ(1deg);
-          transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+          transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s ease, border-color 0.3s ease;
         }
         .dashboard-card:hover {
-          transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.02);
+          transform: rotateX(4deg) rotateY(-4deg) translateY(-4px) scale(1.01);
           background: rgba(10, 7, 20, 0.6);
           border-color: rgba(192, 132, 252, 0.2);
         }

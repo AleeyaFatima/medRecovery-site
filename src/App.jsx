@@ -13,6 +13,7 @@ import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import { AnimatePresence } from 'framer-motion';
 import SEOManager from './components/SEOManager';
+import ParallaxParticles from './components/ParallaxParticles';
 
 const getInitialPage = () => {
   if (typeof window === 'undefined') return 'home';
@@ -127,6 +128,7 @@ function App() {
   return (
     <div className={`app-wrapper ${theme}`}>
       <SEOManager currentPage={currentPage} />
+      <ParallaxParticles />
       <Navbar 
         theme={theme} 
         toggleTheme={toggleTheme} 
