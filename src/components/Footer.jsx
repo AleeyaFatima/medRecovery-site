@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldAlert, ArrowUp } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer({ setCurrentPage, theme }) {
   const currentYear = new Date().getFullYear();
@@ -7,8 +8,6 @@ export default function Footer({ setCurrentPage, theme }) {
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=6' : '/logo_light.png?v=6';
 
   return (
     <footer className="footer section section-dark">
@@ -39,11 +38,7 @@ export default function Footer({ setCurrentPage, theme }) {
           {/* Company Brief & Socials */}
           <div className="footer-column brief-col">
             <div className={`footer-logo ${theme === 'light' ? 'footer-logo-light-theme' : ''}`}>
-              <img 
-                src={logoSrc} 
-                alt="MedRecovery Solutions, LLC Logo" 
-                className="logo-img-footer"
-              />
+              <Logo className="logo-img-footer" />
             </div>
             <p className="footer-tagline">
               "Ensuring physicians get paid for the care they give."™

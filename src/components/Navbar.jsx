@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,19 +48,12 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=6' : '/logo_light.png?v=6';
-
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        
         {/* Brand Image Logo Container */}
         <button onClick={() => handleNavClick('home')} className="logo-btn-box" aria-label="MedRecovery Home">
-          <img 
-            src={logoSrc} 
-            alt="MedRecovery Solutions, LLC Logo" 
-            className="logo-img-branding" 
-          />
+          <Logo className="logo-img-branding" />
         </button>
 
         {/* Desktop Navigation Link Tabs (Prominent tab-bar styling) */}
@@ -125,9 +119,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
       <div className={`mobile-menu-overlay ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(false)}>
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-menu-header">
-            <img 
-              src={logoSrc} 
-              alt="MedRecovery Solutions, LLC Logo" 
+            <Logo 
               className="logo-img-branding" 
               style={{ width: '200px', height: 'auto' }}
             />
@@ -238,7 +230,6 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           overflow: visible;
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           animation: treeBloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          mix-blend-mode: multiply; /* Blends logo white background in light mode */
         }
         @keyframes treeBloom {
           0% {

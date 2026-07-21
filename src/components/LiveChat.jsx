@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, Send, User, Check, ShieldAlert } from 'lucide-react';
+import { MessageSquare, X, Send, User, ShieldAlert } from 'lucide-react';
 
 export default function LiveChat({ setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,8 @@ export default function LiveChat({ setCurrentPage }) {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [customText, setCustomText] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const messagesEndRef = useRef(null);
 
   const options = [
@@ -22,12 +24,19 @@ export default function LiveChat({ setCurrentPage }) {
   ];
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesEndRef.current) {
+      const container = messagesEndRef.current.parentNode;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, isTyping]);
+    if (isOpen) {
+      scrollToBottom();
+    }
+  }, [messages, isTyping, isOpen]);
 
   const handleOptionClick = (option) => {
     // Add user message
@@ -70,6 +79,42 @@ export default function LiveChat({ setCurrentPage }) {
       setIsTyping(false);
       setMessages(prev => [...prev, agentMsg]);
     }, 1200);
+  };
+
+  const handleCustomSubmit = (e) => {
+    e?.preventDefault();
+    if (!customText.trim()) return;
+
+    const userMsg = {
+      id: Date.now(),
+      sender: 'user',
+      text: customText,
+      time: 'Just now'
+    };
+    setMessages(prev => [...prev, userMsg]);
+    const typedText = customText;
+    setCustomText('');
+    setIsTyping(true);
+
+    // Simulate agent response
+    setTimeout(() => {
+      let replyText = `Thanks for asking. Regarding your query ("${typedText}"), our certified coding and collections specialists are reviewing this right now. Please tell us your email or phone number below so we can get back to you with a comprehensive analysis!`;
+      const agentMsg = {
+        id: Date.now() + 1,
+        sender: 'agent',
+        text: replyText,
+        time: 'Just now'
+      };
+      setIsTyping(false);
+      setMessages(prev => [...prev, agentMsg]);
+    }, 1500);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleCustomSubmit(e);
+    }
   };
 
   return (
@@ -120,7 +165,9 @@ export default function LiveChat({ setCurrentPage }) {
           </div>
 
           <div className="chat-footer">
-            <div className="quick-options-title">Select a query to ask Diana:</div>
+            <div className="quick-options-title">Select a query or write custom message:</div>
+            
+            {/* Soft, borderless options grid */}
             <div className="chat-options-grid">
               {options.map((opt, idx) => (
                 <button 
@@ -133,6 +180,29 @@ export default function LiveChat({ setCurrentPage }) {
                 </button>
               ))}
             </div>
+
+            {/* Custom expanded typing space */}
+            <form onSubmit={handleCustomSubmit} className={`chat-input-form ${isFocused ? 'expanded' : ''}`}>
+              <textarea
+                value={customText}
+                onChange={(e) => setCustomText(e.target.value)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask Diana a question..."
+                className="chat-textarea"
+                rows={isFocused ? 3 : 1}
+              />
+              <button 
+                type="submit" 
+                className="send-msg-btn" 
+                aria-label="Send message" 
+                disabled={isTyping || !customText.trim()}
+              >
+                <Send size={15} />
+              </button>
+            </form>
+
             <div className="chat-compliance-notice">
               <ShieldAlert size={10} />
               <span>HIPAA Compliant & Secure Channel</span>
@@ -150,8 +220,8 @@ export default function LiveChat({ setCurrentPage }) {
           font-family: var(--font-sans);
         }
         .chat-trigger-bubble {
-          width: 56px;
-          height: 56px;
+          width: 58px;
+          height: 58px;
           border-radius: 50%;
           background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
           border: none;
@@ -160,12 +230,12 @@ export default function LiveChat({ setCurrentPage }) {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          box-shadow: 0 10px 30px rgba(110, 63, 165, 0.4);
+          box-shadow: 0 12px 35px rgba(110, 63, 165, 0.35);
           position: relative;
           transition: transform var(--transition-fast);
         }
         .chat-trigger-bubble:hover {
-          transform: scale(1.08);
+          transform: scale(1.06);
         }
         .online-badge {
           position: absolute;
@@ -178,70 +248,77 @@ export default function LiveChat({ setCurrentPage }) {
           border: 2px solid var(--bg-surface);
         }
         
+        /* Larger Chat Box (Roomy & Clean) */
         .chat-window {
-          width: 340px;
-          height: 480px;
-          background: rgba(15, 12, 28, 0.9);
+          width: 380px;
+          height: 560px;
+          background: rgba(14, 10, 26, 0.95);
           backdrop-filter: blur(25px);
           -webkit-backdrop-filter: blur(25px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+          border: none !important; /* Removed hard borders */
+          border-radius: 24px;
+          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
           display: flex;
           flex-direction: column;
           overflow: hidden;
           animation: slideUpChat 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          transition: height 0.25s ease-in-out;
         }
+        
         .light .chat-window {
-          background: rgba(255, 255, 255, 0.95);
-          border-color: rgba(0, 0, 0, 0.08);
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+          background: #FFFFFF;
+          box-shadow: 0 30px 70px rgba(110, 63, 165, 0.12);
         }
+        
         @keyframes slideUpChat {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
         
         .chat-header {
-          padding: 16px;
-          background: rgba(255, 255, 255, 0.03);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 18px 20px;
+          background: rgba(255, 255, 255, 0.02);
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
         .light .chat-header {
-          background: rgba(0, 0, 0, 0.02);
-          border-color: rgba(0, 0, 0, 0.05);
+          background: rgba(110, 63, 165, 0.03);
         }
+        
         .agent-info {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
         .avatar-box {
-          width: 32px;
-          height: 32px;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          background: rgba(192, 132, 252, 0.2);
+          background: rgba(192, 132, 252, 0.15);
           color: var(--color-accent);
           display: flex;
           align-items: center;
           justify-content: center;
         }
+        .light .avatar-box {
+          background: rgba(110, 63, 165, 0.08);
+          color: var(--color-primary);
+        }
+        
         .agent-meta {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
         }
         .agent-name {
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           font-weight: 700;
           color: var(--text-primary);
           line-height: 1.2;
         }
         .agent-status {
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           color: var(--text-muted);
         }
         .close-chat-btn {
@@ -257,16 +334,16 @@ export default function LiveChat({ setCurrentPage }) {
         
         .chat-messages-container {
           flex: 1;
-          padding: 16px;
+          padding: 20px;
           overflow-y: auto;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 14px;
         }
         .chat-message {
           display: flex;
           flex-direction: column;
-          max-width: 80%;
+          max-width: 82%;
         }
         .msg-agent {
           align-self: flex-start;
@@ -276,28 +353,33 @@ export default function LiveChat({ setCurrentPage }) {
           align-self: flex-end;
           align-items: flex-end;
         }
+        
+        /* Modern Message Bubbles */
         .message-bubble {
-          padding: 10px 14px;
-          border-radius: 14px;
-          font-size: 0.82rem;
-          line-height: 1.4;
+          padding: 12px 16px;
+          border-radius: 16px;
+          font-size: 0.85rem;
+          line-height: 1.45;
           text-align: left;
         }
         .msg-agent .message-bubble {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.06);
           color: var(--text-primary);
-          border-top-left-radius: 2px;
+          border-top-left-radius: 4px;
         }
         .light .msg-agent .message-bubble {
-          background: rgba(0, 0, 0, 0.04);
+          background: rgba(110, 63, 165, 0.05);
         }
         .msg-user .message-bubble {
-          background: var(--color-accent);
+          background: var(--color-primary);
           color: #FFFFFF;
-          border-top-right-radius: 2px;
+          border-top-right-radius: 4px;
+        }
+        .light .msg-user .message-bubble {
+          background: var(--color-primary);
         }
         .message-time {
-          font-size: 0.65rem;
+          font-size: 0.68rem;
           color: var(--text-muted);
           margin-top: 4px;
         }
@@ -306,7 +388,7 @@ export default function LiveChat({ setCurrentPage }) {
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 10px 16px;
+          padding: 12px 18px;
         }
         .typing-bubble .dot {
           width: 6px;
@@ -323,50 +405,118 @@ export default function LiveChat({ setCurrentPage }) {
         }
         
         .chat-footer {
-          padding: 16px;
-          background: rgba(255, 255, 255, 0.02);
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 16px 20px;
+          background: rgba(255, 255, 255, 0.01);
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
         }
         .light .chat-footer {
-          background: rgba(0, 0, 0, 0.01);
-          border-color: rgba(0, 0, 0, 0.05);
+          background: rgba(110, 63, 165, 0.01);
         }
+        
         .quick-options-title {
-          font-size: 0.72rem;
-          font-weight: 700;
+          font-size: 0.75rem;
+          font-weight: 600;
           color: var(--text-secondary);
           text-align: left;
           margin-bottom: 2px;
         }
+        
+        /* Borderless pill options */
         .chat-options-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 4px;
         }
         .chat-option-btn {
-          background: rgba(192, 132, 252, 0.1);
-          border: 1px solid rgba(192, 132, 252, 0.2);
+          background: rgba(255, 255, 255, 0.05);
+          border: none !important;
           color: var(--text-primary);
-          padding: 8px 10px;
-          border-radius: 8px;
+          padding: 6px 12px;
+          border-radius: 20px;
           font-size: 0.75rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          text-align: left;
+        }
+        .light .chat-option-btn {
+          background: rgba(110, 63, 165, 0.05);
+          color: var(--color-primary);
         }
         .chat-option-btn:hover:not(:disabled) {
-          background: var(--color-accent);
+          background: var(--color-primary);
           color: #FFFFFF;
-          border-color: var(--color-accent);
         }
         .chat-option-btn:disabled {
-          opacity: 0.5;
+          opacity: 0.4;
           cursor: not-allowed;
         }
+        
+        /* Dynamic Expanding Custom Question Space */
+        .chat-input-form {
+          display: flex;
+          align-items: flex-end;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          padding: 8px 12px;
+          border-radius: 14px;
+          transition: all 0.25s ease-in-out;
+        }
+        .light .chat-input-form {
+          background: rgba(110, 63, 165, 0.04);
+        }
+        .chat-input-form.expanded {
+          background: rgba(255, 255, 255, 0.06);
+          box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.25);
+        }
+        .light .chat-input-form.expanded {
+          background: #FFFFFF;
+          box-shadow: 0 0 0 2px rgba(110, 63, 165, 0.15), 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        
+        .chat-textarea {
+          flex: 1;
+          background: transparent;
+          border: none !important;
+          outline: none !important;
+          resize: none;
+          font-family: inherit;
+          font-size: 0.82rem;
+          color: var(--text-primary);
+          padding: 4px 0;
+          min-height: 24px;
+          max-height: 120px;
+          line-height: 1.4;
+          transition: height 0.25s ease-in-out;
+        }
+        .chat-textarea::placeholder {
+          color: var(--text-muted);
+        }
+        
+        .send-msg-btn {
+          background: var(--color-primary);
+          color: #FFFFFF;
+          border: none;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: transform 0.2s ease, opacity 0.2s ease;
+          flex-shrink: 0;
+        }
+        .send-msg-btn:hover:not(:disabled) {
+          transform: scale(1.06);
+        }
+        .send-msg-btn:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+        
         .chat-compliance-notice {
           display: flex;
           align-items: center;
@@ -383,12 +533,15 @@ export default function LiveChat({ setCurrentPage }) {
             right: 20px;
           }
           .chat-window {
-            width: 290px;
-            height: 420px;
+            width: 320px;
+            height: 480px;
           }
           .chat-options-grid {
-            grid-template-columns: 1fr;
-            gap: 6px;
+            gap: 4px;
+          }
+          .chat-option-btn {
+            font-size: 0.7rem;
+            padding: 5px 10px;
           }
         }
       `}</style>
