@@ -175,7 +175,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 160px;
+          height: 90px;
           display: flex;
           align-items: center;
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -185,7 +185,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           padding: 0;
         }
         .navbar.scrolled {
-          height: 125px;
+          height: 75px;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
         }
         .dark .navbar {
@@ -224,7 +224,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         }
         
         .logo-img-branding {
-          width: 310px; /* Sized up to 310px wide to make the bottom subtext clearly visible and readable */
+          width: 240px; /* 1 size smaller to fit sleek header, clear and readable */
           height: auto;
           object-fit: contain;
           overflow: visible;
@@ -242,7 +242,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           }
         }
         .navbar.scrolled .logo-img-branding {
-          width: 240px; /* Sticky header logo sized up to 240px wide */
+          width: 200px; /* Sticky header logo sized 1 size smaller */
           height: auto;
         }
         .dark .logo-img-branding {
