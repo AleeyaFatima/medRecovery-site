@@ -1,12 +1,14 @@
 import React from 'react';
 import { ShieldAlert, ArrowUp } from 'lucide-react';
 
-export default function Footer({ setCurrentPage }) {
+export default function Footer({ setCurrentPage, theme }) {
   const currentYear = new Date().getFullYear();
 
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=6' : '/logo_light.png?v=6';
 
   return (
     <footer className="footer section section-dark">
@@ -36,9 +38,9 @@ export default function Footer({ setCurrentPage }) {
           
           {/* Company Brief & Socials */}
           <div className="footer-column brief-col">
-            <div className="footer-logo">
+            <div className={`footer-logo ${theme === 'light' ? 'footer-logo-light-theme' : ''}`}>
               <img 
-                src="/logo_dark.png?v=3" 
+                src={logoSrc} 
                 alt="MedRecovery Solutions, LLC Logo" 
                 className="logo-img-footer"
               />
@@ -182,18 +184,30 @@ export default function Footer({ setCurrentPage }) {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: #FFFFFF !important; /* Pure White box background as requested */
+          background: transparent !important;
+          padding: 0;
+          border: none !important;
+          box-shadow: none !important;
+          margin-bottom: 16px;
+          width: fit-content;
+          transition: all var(--transition-normal);
+        }
+        .footer-logo.footer-logo-light-theme {
+          background: #FFFFFF !important;
           padding: 10px 18px;
           border-radius: 12px;
           border: 1px solid rgba(0, 0, 0, 0.08);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-          margin-bottom: 16px;
-          width: fit-content;
         }
         .logo-img-footer {
-          height: 100px; /* Scaled to fit perfectly inside the box container */
+          width: 260px; /* Scaled to show the logo and text beautifully */
+          height: auto;
           object-fit: contain;
-          filter: none; /* Reverted to show original logo colors */
+          filter: none;
+          mix-blend-mode: normal;
+        }
+        .footer-logo.footer-logo-light-theme .logo-img-footer {
+          width: 220px; /* Scaled slightly smaller to sit beautifully in the container box */
         }
         
         .footer-tagline {

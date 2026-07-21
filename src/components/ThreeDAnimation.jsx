@@ -506,8 +506,8 @@ export default function ThreeDAnimation() {
           animation-delay: -1.5s;
         }
         .badge-bottom-left {
-          bottom: 10%;
-          left: -5%;
+          bottom: 35%;
+          left: -8%;
           animation-delay: -3.5s;
         }
         

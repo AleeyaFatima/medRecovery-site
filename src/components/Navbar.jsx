@@ -47,7 +47,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=3' : '/logo_light.png?v=3';
+  const logoSrc = theme === 'dark' ? '/logo_dark.png?v=6' : '/logo_light.png?v=6';
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
@@ -129,7 +129,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
               src={logoSrc} 
               alt="MedRecovery Solutions, LLC Logo" 
               className="logo-img-branding" 
-              style={{ width: '140px', height: 'auto' }}
+              style={{ width: '200px', height: 'auto' }}
             />
             <button onClick={() => setIsOpen(false)} className="menu-close">
               <X size={24} />
@@ -183,7 +183,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           left: 0;
           width: 100%;
           z-index: 1000;
-          height: 140px;
+          height: 160px;
           display: flex;
           align-items: center;
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -193,7 +193,7 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           padding: 0;
         }
         .navbar.scrolled {
-          height: 110px;
+          height: 125px;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
         }
         .dark .navbar {
@@ -232,13 +232,13 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
         }
         
         .logo-img-branding {
-          width: 165px; /* Sized up to 165px wide to make the bottom subtext clearly visible and readable */
+          width: 310px; /* Sized up to 310px wide to make the bottom subtext clearly visible and readable */
           height: auto;
           object-fit: contain;
           overflow: visible;
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          filter: contrast(1.18) saturate(1.12) brightness(0.96); /* Darkens gray text to optimize contrast */
           animation: treeBloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+          mix-blend-mode: multiply; /* Blends logo white background in light mode */
         }
         @keyframes treeBloom {
           0% {
@@ -251,11 +251,12 @@ export default function Navbar({ theme, toggleTheme, currentPage, setCurrentPage
           }
         }
         .navbar.scrolled .logo-img-branding {
-          width: 125px; /* Sticky header logo sized up to 125px wide */
+          width: 240px; /* Sticky header logo sized up to 240px wide */
           height: auto;
         }
         .dark .logo-img-branding {
           filter: none;
+          mix-blend-mode: normal;
         }
         
         /* Modern minimal text links matching Headway/Cedar */

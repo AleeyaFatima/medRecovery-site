@@ -210,7 +210,7 @@ function App() {
           {renderPage()}
         </AnimatePresence>
       </main>
-      <Footer setCurrentPage={setCurrentPage} />
+      <Footer setCurrentPage={setCurrentPage} theme={theme} />
       <LiveChat setCurrentPage={setCurrentPage} />
       <CookieConsent setCurrentPage={setCurrentPage} />
     </div>
