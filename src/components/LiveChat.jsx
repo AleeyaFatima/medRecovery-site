@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, User, ShieldAlert } from 'lucide-react';
+import Logo from './Logo';
 
 export default function LiveChat({ setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +40,6 @@ export default function LiveChat({ setCurrentPage }) {
   }, [messages, isTyping, isOpen]);
 
   const handleOptionClick = (option) => {
-    // Add user message
     const userMsg = {
       id: Date.now(),
       sender: 'user',
@@ -49,7 +49,6 @@ export default function LiveChat({ setCurrentPage }) {
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
 
-    // Simulate typing delay
     setTimeout(() => {
       let replyText = '';
       if (option.action === 'audit') {
@@ -96,7 +95,6 @@ export default function LiveChat({ setCurrentPage }) {
     setCustomText('');
     setIsTyping(true);
 
-    // Simulate agent response
     setTimeout(() => {
       let replyText = `Thanks for asking. Regarding your query ("${typedText}"), our certified coding and collections specialists are reviewing this right now. Please tell us your email or phone number below so we can get back to you with a comprehensive analysis!`;
       const agentMsg = {
@@ -119,55 +117,62 @@ export default function LiveChat({ setCurrentPage }) {
 
   return (
     <div className="live-chat-widget">
-      {/* Floating Trigger Bubble */}
-      {!isOpen && (
-        <button onClick={() => setIsOpen(true)} className="chat-trigger-bubble" aria-label="Open support chat">
-          <MessageSquare size={24} />
-          <span className="online-badge" />
-        </button>
-      )}
-
-      {/* Chat Window */}
+      {/* Crisp-Inspired Chat Window */}
       {isOpen && (
         <div className="chat-window card">
+          
+          {/* Solid Dark Slate Header */}
           <div className="chat-header">
+            <span className="messages-badge">Messages</span>
             <div className="agent-info">
               <div className="avatar-box">
-                <User size={16} />
+                {/* Embedded dynamic logo wings inside the avatar box */}
+                <Logo className="avatar-logo-svg" style={{ width: '22px', height: 'auto', fill: '#FFFFFF' }} />
               </div>
               <div className="agent-meta">
                 <span className="agent-name">Diana Ward</span>
-                <span className="agent-status">Operations Director</span>
+                <span className="agent-status"><span className="online-dot" /> Online</span>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="close-chat-btn" aria-label="Close support chat">
-              <X size={18} />
-            </button>
           </div>
 
+          {/* Crisp style solid light grey body */}
           <div className="chat-messages-container">
+            <div className="chat-date-separator">Wednesday, 22 July</div>
             {messages.map((msg) => (
               <div key={msg.id} className={`chat-message ${msg.sender === 'agent' ? 'msg-agent' : 'msg-user'}`}>
-                <div className="message-bubble">{msg.text}</div>
-                <span className="message-time">{msg.time}</span>
+                {msg.sender === 'agent' && (
+                  <div className="message-avatar">
+                    <User size={12} />
+                  </div>
+                )}
+                <div className="message-bubble-wrapper">
+                  <div className="message-bubble">{msg.text}</div>
+                  <span className="message-time">{msg.time}</span>
+                </div>
               </div>
             ))}
             {isTyping && (
               <div className="chat-message msg-agent">
-                <div className="message-bubble typing-bubble">
-                  <span className="dot" />
-                  <span className="dot" />
-                  <span className="dot" />
+                <div className="message-avatar">
+                  <User size={12} />
+                </div>
+                <div className="message-bubble-wrapper">
+                  <div className="message-bubble typing-bubble">
+                    <span className="dot" />
+                    <span className="dot" />
+                    <span className="dot" />
+                  </div>
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="chat-footer">
+          {/* Floating White Footer Card */}
+          <div className="chat-footer-wrapper">
             <div className="quick-options-title">Select a query or write custom message:</div>
             
-            {/* Soft, borderless options grid */}
             <div className="chat-options-grid">
               {options.map((opt, idx) => (
                 <button 
@@ -181,27 +186,28 @@ export default function LiveChat({ setCurrentPage }) {
               ))}
             </div>
 
-            {/* Custom expanded typing space */}
-            <form onSubmit={handleCustomSubmit} className={`chat-input-form ${isFocused ? 'expanded' : ''}`}>
-              <textarea
-                value={customText}
-                onChange={(e) => setCustomText(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask Diana a question..."
-                className="chat-textarea"
-                rows={isFocused ? 3 : 1}
-              />
-              <button 
-                type="submit" 
-                className="send-msg-btn" 
-                aria-label="Send message" 
-                disabled={isTyping || !customText.trim()}
-              >
-                <Send size={15} />
-              </button>
-            </form>
+            <div className="chat-footer-card">
+              <form onSubmit={handleCustomSubmit} className={`chat-input-form ${isFocused ? 'expanded' : ''}`}>
+                <textarea
+                  value={customText}
+                  onChange={(e) => setCustomText(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Write a message..."
+                  className="chat-textarea"
+                  rows={isFocused ? 3 : 1}
+                />
+                <button 
+                  type="submit" 
+                  className="send-msg-btn" 
+                  aria-label="Send message" 
+                  disabled={isTyping || !customText.trim()}
+                >
+                  <Send size={14} />
+                </button>
+              </form>
+            </div>
 
             <div className="chat-compliance-notice">
               <ShieldAlert size={10} />
@@ -211,6 +217,16 @@ export default function LiveChat({ setCurrentPage }) {
         </div>
       )}
 
+      {/* Floating Trigger/Close Bubble */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className={`chat-trigger-bubble ${isOpen ? 'open-state' : ''}`} 
+        aria-label={isOpen ? "Close support chat" : "Open support chat"}
+      >
+        {isOpen ? <X size={22} /> : <MessageSquare size={24} />}
+        {!isOpen && <span className="online-badge" />}
+      </button>
+
       <style>{`
         .live-chat-widget {
           position: fixed;
@@ -218,10 +234,15 @@ export default function LiveChat({ setCurrentPage }) {
           right: 30px;
           z-index: 9999;
           font-family: var(--font-sans);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
         }
+        
+        /* Floating launcher button in bottom corner */
         .chat-trigger-bubble {
-          width: 58px;
-          height: 58px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
           background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
           border: none;
@@ -231,12 +252,22 @@ export default function LiveChat({ setCurrentPage }) {
           justify-content: center;
           cursor: pointer;
           box-shadow: 0 12px 35px rgba(110, 63, 165, 0.35);
-          position: relative;
-          transition: transform var(--transition-fast);
+          transition: all var(--transition-fast);
+          z-index: 10;
         }
         .chat-trigger-bubble:hover {
-          transform: scale(1.06);
+          transform: scale(1.05);
         }
+        /* Rotates and shifts to dark charcoal slate when open, matching Crisp */
+        .chat-trigger-bubble.open-state {
+          background: #1E2229 !important;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+          transform: rotate(90deg);
+        }
+        .chat-trigger-bubble.open-state:hover {
+          transform: rotate(90deg) scale(1.05);
+        }
+        
         .online-badge {
           position: absolute;
           top: 2px;
@@ -248,62 +279,72 @@ export default function LiveChat({ setCurrentPage }) {
           border: 2px solid var(--bg-surface);
         }
         
-        /* Larger Chat Box (Roomy & Clean) */
+        /* Crisp-inspired floating window */
         .chat-window {
-          width: 380px;
-          height: 560px;
-          background: rgba(14, 10, 26, 0.95);
-          backdrop-filter: blur(25px);
-          -webkit-backdrop-filter: blur(25px);
-          border: none !important; /* Removed hard borders */
-          border-radius: 24px;
-          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+          position: absolute;
+          bottom: 84px; /* Floats 24px above launcher button */
+          right: 0;
+          width: 360px;
+          height: 520px;
+          background: #E6E9EC; /* Solid light grey Crisp body */
+          border: none !important;
+          border-radius: 16px;
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
           display: flex;
           flex-direction: column;
           overflow: hidden;
           animation: slideUpChat 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-          transition: height 0.25s ease-in-out;
         }
         
-        .light .chat-window {
-          background: #FFFFFF;
-          box-shadow: 0 30px 70px rgba(110, 63, 165, 0.12);
+        .dark .chat-window {
+          background: #1A1D24; /* Dark charcoal slate */
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
         }
         
         @keyframes slideUpChat {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
         }
         
+        /* Solid Dark Slate Header */
         .chat-header {
-          padding: 18px 20px;
-          background: rgba(255, 255, 255, 0.02);
+          padding: 16px 20px;
+          background: #1E2229;
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
           align-items: center;
+          gap: 8px;
+          position: relative;
         }
-        .light .chat-header {
-          background: rgba(110, 63, 165, 0.03);
+        .messages-badge {
+          background: #FFFFFF;
+          color: #1E2229;
+          font-weight: 700;
+          font-size: 0.7rem;
+          padding: 4px 12px;
+          border-radius: 20px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
         
         .agent-info {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
+          width: 100%;
         }
         .avatar-box {
-          width: 36px;
-          height: 36px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
-          background: rgba(192, 132, 252, 0.15);
-          color: var(--color-accent);
+          background: rgba(255, 255, 255, 0.1);
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-shrink: 0;
         }
-        .light .avatar-box {
-          background: rgba(110, 63, 165, 0.08);
-          color: var(--color-primary);
+        .avatar-logo-svg path {
+          fill: #FFFFFF !important;
         }
         
         .agent-meta {
@@ -312,83 +353,117 @@ export default function LiveChat({ setCurrentPage }) {
           align-items: flex-start;
         }
         .agent-name {
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 700;
-          color: var(--text-primary);
+          color: #FFFFFF;
           line-height: 1.2;
         }
         .agent-status {
-          font-size: 0.72rem;
-          color: var(--text-muted);
+          font-size: 0.7rem;
+          color: #10B981;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 4px;
         }
-        .close-chat-btn {
-          background: transparent;
-          border: none;
-          color: var(--text-secondary);
-          cursor: pointer;
-          transition: color 0.2s ease;
-        }
-        .close-chat-btn:hover {
-          color: #EF4444;
+        .online-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: #10B981;
+          display: inline-block;
         }
         
         .chat-messages-container {
           flex: 1;
-          padding: 20px;
+          padding: 16px;
           overflow-y: auto;
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 12px;
         }
+        
+        .chat-date-separator {
+          font-size: 0.7rem;
+          color: var(--text-muted);
+          font-weight: 600;
+          text-align: center;
+          margin: 4px 0;
+        }
+        
         .chat-message {
           display: flex;
-          flex-direction: column;
-          max-width: 82%;
+          align-items: flex-start;
+          gap: 8px;
+          max-width: 85%;
         }
         .msg-agent {
           align-self: flex-start;
-          align-items: flex-start;
         }
         .msg-user {
           align-self: flex-end;
+          flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: var(--color-primary);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        
+        .message-bubble-wrapper {
+          display: flex;
+          flex-direction: column;
+        }
+        .msg-agent .message-bubble-wrapper {
+          align-items: flex-start;
+        }
+        .msg-user .message-bubble-wrapper {
           align-items: flex-end;
         }
         
-        /* Modern Message Bubbles */
+        /* Crisp style bubble pointer tail */
         .message-bubble {
-          padding: 12px 16px;
-          border-radius: 16px;
-          font-size: 0.85rem;
-          line-height: 1.45;
+          padding: 10px 14px;
+          border-radius: 12px;
+          font-size: 0.82rem;
+          line-height: 1.4;
           text-align: left;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
         .msg-agent .message-bubble {
-          background: rgba(255, 255, 255, 0.06);
-          color: var(--text-primary);
-          border-top-left-radius: 4px;
+          background: #FFFFFF;
+          color: #2C3E50;
+          border-top-left-radius: 2px;
         }
-        .light .msg-agent .message-bubble {
-          background: rgba(110, 63, 165, 0.05);
+        .dark .msg-agent .message-bubble {
+          background: #222630;
+          color: #ECEFF1;
         }
+        
         .msg-user .message-bubble {
           background: var(--color-primary);
           color: #FFFFFF;
-          border-top-right-radius: 4px;
-        }
-        .light .msg-user .message-bubble {
-          background: var(--color-primary);
+          border-top-right-radius: 2px;
         }
         .message-time {
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           color: var(--text-muted);
-          margin-top: 4px;
+          margin-top: 3px;
         }
         
         .typing-bubble {
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 12px 18px;
+          padding: 10px 16px;
         }
         .typing-bubble .dot {
           width: 6px;
@@ -404,45 +479,42 @@ export default function LiveChat({ setCurrentPage }) {
           40% { transform: scale(1); }
         }
         
-        .chat-footer {
-          padding: 16px 20px;
-          background: rgba(255, 255, 255, 0.01);
+        .chat-footer-wrapper {
+          padding: 0 12px 12px 12px;
+          background: transparent;
           display: flex;
           flex-direction: column;
-          gap: 12px;
-        }
-        .light .chat-footer {
-          background: rgba(110, 63, 165, 0.01);
+          gap: 8px;
         }
         
         .quick-options-title {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 600;
           color: var(--text-secondary);
           text-align: left;
-          margin-bottom: 2px;
+          padding: 0 4px;
         }
         
-        /* Borderless pill options */
         .chat-options-grid {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
-          margin-bottom: 4px;
+          gap: 4px;
+          padding: 0 4px;
         }
         .chat-option-btn {
-          background: rgba(255, 255, 255, 0.05);
+          background: #FFFFFF;
           border: none !important;
-          color: var(--text-primary);
-          padding: 6px 12px;
+          color: var(--color-primary);
+          padding: 5px 10px;
           border-radius: 20px;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 600;
           cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.02);
           transition: all 0.2s ease;
         }
-        .light .chat-option-btn {
-          background: rgba(110, 63, 165, 0.05);
+        .dark .chat-option-btn {
+          background: #222630;
           color: var(--color-primary);
         }
         .chat-option-btn:hover:not(:disabled) {
@@ -454,26 +526,27 @@ export default function LiveChat({ setCurrentPage }) {
           cursor: not-allowed;
         }
         
-        /* Dynamic Expanding Custom Question Space */
+        /* Floating footer card input box matching Crisp */
+        .chat-footer-card {
+          background: #FFFFFF;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+          overflow: hidden;
+        }
+        .dark .chat-footer-card {
+          background: #222630;
+        }
+        
         .chat-input-form {
           display: flex;
           align-items: flex-end;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.04);
+          gap: 6px;
           padding: 8px 12px;
-          border-radius: 14px;
+          background: transparent;
           transition: all 0.25s ease-in-out;
         }
-        .light .chat-input-form {
-          background: rgba(110, 63, 165, 0.04);
-        }
         .chat-input-form.expanded {
-          background: rgba(255, 255, 255, 0.06);
-          box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.25);
-        }
-        .light .chat-input-form.expanded {
-          background: #FFFFFF;
-          box-shadow: 0 0 0 2px rgba(110, 63, 165, 0.15), 0 4px 15px rgba(0, 0, 0, 0.03);
+          box-shadow: inset 0 0 0 1px rgba(110, 63, 165, 0.15);
         }
         
         .chat-textarea {
@@ -483,13 +556,13 @@ export default function LiveChat({ setCurrentPage }) {
           outline: none !important;
           resize: none;
           font-family: inherit;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
           color: var(--text-primary);
           padding: 4px 0;
-          min-height: 24px;
-          max-height: 120px;
-          line-height: 1.4;
-          transition: height 0.25s ease-in-out;
+          min-height: 20px;
+          max-height: 80px;
+          line-height: 1.35;
+          transition: height 0.2s ease-in-out;
         }
         .chat-textarea::placeholder {
           color: var(--text-muted);
@@ -500,8 +573,8 @@ export default function LiveChat({ setCurrentPage }) {
           color: #FFFFFF;
           border: none;
           border-radius: 50%;
-          width: 32px;
-          height: 32px;
+          width: 28px;
+          height: 28px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -510,10 +583,10 @@ export default function LiveChat({ setCurrentPage }) {
           flex-shrink: 0;
         }
         .send-msg-btn:hover:not(:disabled) {
-          transform: scale(1.06);
+          transform: scale(1.05);
         }
         .send-msg-btn:disabled {
-          opacity: 0.4;
+          opacity: 0.3;
           cursor: not-allowed;
         }
         
@@ -522,26 +595,19 @@ export default function LiveChat({ setCurrentPage }) {
           align-items: center;
           justify-content: center;
           gap: 6px;
-          font-size: 0.65rem;
+          font-size: 0.62rem;
           color: var(--text-muted);
-          margin-top: 4px;
         }
         
         @media (max-width: 480px) {
-          .live-chat-widget {
-            bottom: 20px;
-            right: 20px;
-          }
           .chat-window {
-            width: 320px;
-            height: 480px;
-          }
-          .chat-options-grid {
-            gap: 4px;
+            width: 310px;
+            height: 460px;
+            bottom: 74px;
           }
           .chat-option-btn {
-            font-size: 0.7rem;
-            padding: 5px 10px;
+            font-size: 0.68rem;
+            padding: 4px 8px;
           }
         }
       `}</style>

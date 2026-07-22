@@ -66,6 +66,27 @@ export default function Hero({ setCurrentPage }) {
           align-items: center;
           background: radial-gradient(circle at 10% 20%, rgba(0, 168, 169, 0.03) 0%, transparent 50%),
                       radial-gradient(circle at 90% 80%, rgba(90, 55, 145, 0.03) 0%, transparent 50%);
+          position: relative;
+          overflow: hidden;
+        }
+        .hero-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background-image: url('/home_bg.png');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.38;
+          filter: blur(8px) saturate(0.9) brightness(1.05);
+          pointer-events: none;
+        }
+        .dark .hero-section::before {
+          opacity: 0.24;
+          filter: blur(10px) brightness(0.35) saturate(1.2) hue-rotate(265deg);
         }
         .hero-container {
           display: grid;
